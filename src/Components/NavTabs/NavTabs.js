@@ -1,22 +1,16 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 const useStyles = makeStyles({
     list: {
@@ -27,14 +21,17 @@ const useStyles = makeStyles({
       width: 'auto',
     },
     listItem: {
-        borderTop: '7px solid black'
-    }
+        borderTop: '1px solid lightGrey'
+    },
+    listItemBottom:{
+        borderTop: '1px solid lightGrey',
+        borderBottom: '1px solid lightGrey',
+    },
   });
 
 export default function TemporaryDrawer() {
   const classes = useStyles();
-  const theme = useTheme();
-  const menuItems = ['Inbox', 'Starred', 'Send email', 'Drafts'];
+  const menuItems = ['Home', 'Cholesterol', 'Resting Heart Rate', 'Other'];
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -51,7 +48,7 @@ export default function TemporaryDrawer() {
     >
       <List style={{paddingTop: '0px'}}>
         {menuItems.map((text, index) => (  
-          <ListItem button key={text} style={index === menuItems.length-1 ? {borderTop:'1px solid lightGrey', borderBottom: '1px solid lightGrey'} : {borderTop:'1px solid lightGrey'}}>
+          <ListItem button key={text} className={index === menuItems.length-1 ? classes.listItemBottom : classes.listItem}>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -71,7 +68,7 @@ export default function TemporaryDrawer() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        position="sticky"
       >
         <Toolbar>
           <IconButton
@@ -84,7 +81,7 @@ export default function TemporaryDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h5" noWrap>
-            Persistent drawer
+            Healthy Life Style
           </Typography>
         </Toolbar>
       </AppBar>
