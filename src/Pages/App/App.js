@@ -9,7 +9,7 @@ function App() {
       <NavTabs/>
       <Router>
         <Route exact path="/" component={Sample}/>
-        <Route exact path="/else" component={Sample}/>
+        {/* <Route exact path="/cholesterol" component={Cholesterol}/> */}
       </Router>
     </div>
   );

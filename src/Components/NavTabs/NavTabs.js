@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     list: {
@@ -21,12 +22,16 @@ const useStyles = makeStyles({
       width: 'auto',
     },
     listItem: {
-        borderTop: '1px solid lightGrey'
+        borderTop: '1px solid lightGrey',
     },
     listItemBottom:{
         borderTop: '1px solid lightGrey',
         borderBottom: '1px solid lightGrey',
     },
+    linkText: {
+      color: 'black',
+      textDecoration: 'none'
+    }
   });
 
 export default function TemporaryDrawer() {
@@ -46,13 +51,17 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
+      <Router>
       <List style={{paddingTop: '0px'}}>
-        {menuItems.map((text, index) => (  
-          <ListItem button key={text} className={index === menuItems.length-1 ? classes.listItemBottom : classes.listItem}>
-            <ListItemText primary={text} />
+        {menuItems.map((text, index) => (
+          <Link to={text.split(' ').join('')} className={classes.linkText}>  
+          <ListItem button key={text} className={index === menuItems.length- 1 ? classes.listItemBottom : classes.listItem}>
+            <ListItemText primary={text}/>
           </ListItem>
+          </Link>
         ))}
       </List>
+      </Router>
     </div>
   );
 
