@@ -23,22 +23,28 @@ class Graph extends Component {
             "numberSuffix": props.suffix,
             "theme": "fusion"
           },
-          "data": [{
-            "label": "Venezuela",
-            "value": "290"
-          },
-          {
-            "label": "Saudi",
-            "value": "260"
-          },]
+          "data": this.props.data
         }
       }
     }
   }
 
   componentDidMount() {
-    return;
+    console.log({chartConfigs: {...this.state.chartConfigs, 
+      dataSource: {
+        ...this.state.dataSource, 
+          data: this.props.data
+    }}});
+    console.log(this.props);
+    this.setState({
+      chartConfigs: {...this.state.chartConfigs, 
+        dataSource: {
+          ...this.state.dataSource, 
+            data: this.props.data
+      }},
+      })
   }
+
   render() {
     return <ReactFC {...this.state.chartConfigs} />;
   }
