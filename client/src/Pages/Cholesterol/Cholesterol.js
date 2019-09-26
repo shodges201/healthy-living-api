@@ -12,23 +12,10 @@ class Cholesterol extends Component {
     componentDidMount() {
     }
 
-    addNewData = (date, amount, cb) => {
-        fetch('api/cholesterol/new', {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ date: date, amount: amount })
-          }).then(data => data.json()).then((data) => {
-            cb();
-          })
-    }
-
     render() {
         return (
             <>
-                <Graph data={this.state.data} caption="Cholesterol Tracking" yAxisLabel="Total Cholesterol Level" suffix="mg/dl" url="api/cholesterol"/>
-                <CholesterolForm addNewData={this.addNewData} />
+                <Graph caption="Cholesterol Tracking" yAxisLabel="Total Cholesterol Level" suffix="mg/dl" url="api/cholesterol"/>
             </>
         );
     }
