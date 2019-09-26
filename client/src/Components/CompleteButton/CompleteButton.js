@@ -16,7 +16,7 @@ export default function CompleteFunction(props) {
 
     return (
         <Button onClick={props.handleForm} variant="contained" size="small" color="primary" className={classes.margin}>
-            Small
+            Create New Entry
         </Button>
     )
 }

@@ -1,9 +1,11 @@
 const path = require("path");
 const router = require("express").Router();
-const apiRoutes = require("./cholesterol");
+const apiRoutes = require("./cholesterol/cholesterol");
+const heartRate = require("./heartRate/heartRate");
 
 // API Routes
-router.use("/api", apiRoutes);
+router.use("/api/cholesterol/", apiRoutes);
+router.use("/api/heartrate/", heartRate);
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {

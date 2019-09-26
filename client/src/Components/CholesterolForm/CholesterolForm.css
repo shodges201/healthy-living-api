@@ -1,0 +1,14 @@
+.root{
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+}
+
+.formItem{
+    margin: auto;
+}

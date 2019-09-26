@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FusionCharts from 'fusioncharts';
+import FusionCharts from "fusioncharts";
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
@@ -10,43 +10,60 @@ class Graph extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chartConfigs: {
-        type: 'column2d',
-        width: 600,
-        height: 400,
-        dataFormat: 'json',
-        dataSource: {
-          "chart": {
-            "caption": props.caption,
-            "xAxisName": "Date",
-            "yAxisName": props.yAxisLabel,
-            "numberSuffix": props.suffix,
-            "theme": "fusion"
-          },
-          "data": this.props.data
-        }
-      }
+      dataSource: null
     }
+  }
+  
+
+  getAllData = (cb) => {
+    fetch(`${this.props.url}/getAll`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ user: 'scott' })
+    }).then(data => data.json()).then((data) => {
+      console.log('fetch resp');
+      console.log(data);
+      const formattedData = data.map(item => {
+        return {label: new Date(item.date).toLocaleDateString(), value: item.amount}
+      })
+      console.log(formattedData);
+      cb(formattedData);
+    })
   }
 
   componentDidMount() {
-    console.log({chartConfigs: {...this.state.chartConfigs, 
-      dataSource: {
-        ...this.state.dataSource, 
-          data: this.props.data
-    }}});
-    console.log(this.props);
-    this.setState({
-      chartConfigs: {...this.state.chartConfigs, 
-        dataSource: {
-          ...this.state.dataSource, 
-            data: this.props.data
-      }},
+    this.getAllData(data => {
+      console.log('constructor data: ');
+      console.log(data);
+      this.setState({
+        chartConfigs: {
+          type: 'line',// The chart type
+          width: '100%', // Width of the chart
+          height: '400', // Height of the chart
+          dataFormat: 'json',
+          dataSource: {
+            "chart": {
+              "caption": this.props.caption,
+              "xAxisName": "Date",
+              "yAxisName": this.props.yAxisLabel,
+              "numberSuffix": this.props.suffix,
+              setadaptiveymin: "1",
+              "theme": "fusion"
+            },
+            "data": data
+          }
+        }
       })
+    })
   }
 
   render() {
-    return <ReactFC {...this.state.chartConfigs} />;
+    return (
+    <ReactFC
+    {...this.state.chartConfigs}
+    />);
   }
 }
 

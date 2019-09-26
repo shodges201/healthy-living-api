@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import Graph from '../../Components/Graph/Graph.js';
-import CholesterolForm from '../../Components/CholesterolForm/CholesterolForm.js';
-import './Cholesterol.css';
+import HeartRateForm from '../../Components/HeartRateForm/HeartRateForm.js';
+import './RestingHeartRate.css';
 
-class Cholesterol extends Component {
+class RestingHeartRate extends Component {
     state = {};
-    // constructor(props){
-    //     super(props);
-    // }
 
     componentDidMount() {
     }
 
     addNewData = (date, amount, cb) => {
-        fetch('api/cholesterol/new', {
+        fetch('api/heartrate/new', {
             method: 'post',
             headers: {
               'Content-Type': 'application/json'
@@ -27,11 +24,11 @@ class Cholesterol extends Component {
     render() {
         return (
             <>
-                <Graph data={this.state.data} caption="Cholesterol Tracking" yAxisLabel="Total Cholesterol Level" suffix="mg/dl" url="api/cholesterol"/>
-                <CholesterolForm addNewData={this.addNewData} />
+                <Graph data={this.state.data} caption="Heart Rate Tracking" yAxisLabel="Resting Heart Rate" suffix="BPM" url="api/heartrate" />
+                <HeartRateForm addNewData={this.addNewData} />
             </>
         );
     }
 }
 
-export default Cholesterol;
+export default RestingHeartRate;

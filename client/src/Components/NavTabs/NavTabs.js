@@ -11,28 +11,32 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
-    list: {
-      width: 250,
-      padding: 0
-    },
-    fullList: {
-      width: 'auto',
-    },
-    listItem: {
-        borderTop: '1px solid lightGrey',
-    },
-    listItemBottom:{
-        borderTop: '1px solid lightGrey',
-        borderBottom: '1px solid lightGrey',
-    },
-    linkText: {
-      color: 'black',
-      textDecoration: 'none'
-    }
-  });
+  list: {
+    width: 250,
+    padding: 0
+  },
+  fullList: {
+    width: 'auto',
+  },
+  listItem: {
+    borderTop: '1px solid lightGrey',
+  },
+  listItemBottom: {
+    borderTop: '1px solid lightGrey',
+    borderBottom: '1px solid lightGrey',
+  },
+  linkText: {
+    color: 'black',
+    textDecoration: 'none'
+  },
+  headerText:{
+    color: 'white',
+    textDecoration: 'none'
+  }
+});
 
 export default function TemporaryDrawer() {
   const classes = useStyles();
@@ -51,17 +55,15 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <Router>
-      <List style={{paddingTop: '0px'}}>
+      <List style={{ paddingTop: '0px' }}>
         {menuItems.map((text, index) => (
-          <Link to={text.split(' ').join('')} className={classes.linkText}>  
-          <ListItem button key={text} className={index === menuItems.length- 1 ? classes.listItemBottom : classes.listItem}>
-            <ListItemText primary={text}/>
-          </ListItem>
+          <Link to={text.split(' ').join('')} className={classes.linkText} key={text}>
+            <ListItem button className={index === menuItems.length - 1 ? classes.listItemBottom : classes.listItem}>
+              <ListItemText primary={text} />
+            </ListItem>
           </Link>
         ))}
       </List>
-      </Router>
     </div>
   );
 
@@ -89,9 +91,11 @@ export default function TemporaryDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5" noWrap>
-            Healthy Life Style
-          </Typography>
+          <Link to="/Home" className={classes.headerText}>
+            <Typography variant="h5" noWrap>
+              Healthy Life Style
+            </Typography>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>

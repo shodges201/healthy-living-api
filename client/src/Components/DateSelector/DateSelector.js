@@ -5,6 +5,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import './DateSelector.css';
 
 
 export default function MaterialUIPickers(props) {
@@ -14,20 +15,19 @@ export default function MaterialUIPickers(props) {
   };
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-    <KeyboardDatePicker
-      disableToolbar
-      variant="inline"
-      format="MM/dd/yyyy"
-      margin="normal"
-      id="date-picker-inline"
-      label="Date"
-      value={props.selectedDate}
-      onChange={handleDateChange}
-      KeyboardButtonProps={{
-        "aria-label": "change date"
-      }}
+    <MuiPickersUtilsProvider utils={DateFnsUtils} className="date-selector">
+      <KeyboardDatePicker
+        margin="normal"
+        id="date-picker-dialog"
+        label="Date"
+        format="MM/dd/yyyy"
+        value={props.selectedDate}
+        onChange={handleDateChange}
+        KeyboardButtonProps={{
+          "aria-label": "change date"
+        }}
+      />
     />
-    </MuiPickersUtilsProvider>
+    </MuiPickersUtilsProvider >
   );
 }

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import DateSelector from '../DateSelector/DateSelector.js'
 import TextInput from '../TextInput/TextInput.js';
 import CompleteButton from '../CompleteButton/CompleteButton.js';
-import './CholesterolForm.css';
+import './HeartRateForm.css';
 
-class CholesterolForm extends Component {
+class HeartRateForm extends Component {
     state = {
         date: new Date(),
         level: 0,
@@ -31,7 +31,7 @@ class CholesterolForm extends Component {
             <div className="container">
                 <div className='root'>
                     <DateSelector handleChange={this.handleDate} selectedDate={this.state.date.toDateString()} />
-                    <TextInput label="cholesterol level" level={this.state.level} handleChange={this.handleLevel} />
+                    <TextInput label="Heart Rate" level={this.state.level} handleChange={this.handleLevel} />
                     <CompleteButton handleForm={this.handleClick} />
                 </div>
             </div>
@@ -39,4 +39,4 @@ class CholesterolForm extends Component {
     }
 }
 
-export default CholesterolForm;
+export default HeartRateForm;
