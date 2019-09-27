@@ -27,7 +27,6 @@ export default function MaterialUIPickers(props) {
           "aria-label": "change date"
         }}
       />
-    />
     </MuiPickersUtilsProvider >
   );
 }

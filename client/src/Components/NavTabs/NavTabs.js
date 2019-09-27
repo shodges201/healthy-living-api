@@ -12,6 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
+import { flexbox } from '@material-ui/system';
 
 const useStyles = makeStyles({
   list: {
@@ -32,9 +33,14 @@ const useStyles = makeStyles({
     color: 'black',
     textDecoration: 'none'
   },
-  headerText:{
+  headerText: {
     color: 'white',
     textDecoration: 'none'
+  },
+  rightHeaderLinks: {
+    marginLeft: 'auto',
+    display: "flex",
+    direction: "row"
   }
 });
 
@@ -96,6 +102,18 @@ export default function TemporaryDrawer() {
               Healthy Life Style
             </Typography>
           </Link>
+          <div className={classes.rightHeaderLinks}>
+            <Link to="/Login" className={classes.headerText }>
+              <Typography variant="h5" noWrap>
+                Login
+            </Typography>
+            </Link>
+            <Link to="/Signup" className={classes.headerText} style={{marginLeft: "30px"}}>
+              <Typography variant="h5" noWrap>
+                Signup
+            </Typography>
+            </Link>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>

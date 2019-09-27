@@ -100,6 +100,9 @@ class Graph extends Component {
     if(window.location.pathname === '/Cholesterol'){
       return <CholesterolForm addNewData={this.addNewData} />;
     }
+    // else if(window.location.pathname === '/Cholesterol'){
+
+    // }
     else{
      return <HeartRateForm addNewData={this.addNewData} /> ;
     }

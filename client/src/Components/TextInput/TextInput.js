@@ -1,23 +1,26 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles(theme => ({
-    textField: {
-      margin: 'auto',
-      width: 200,
-    },
-  }));
-
 export default function TextInput(props) {
-    const classes = useStyles();
+    
     return (
         <TextField
           id={`${props.label}TextInput`}
           label={props.label}
-          className={classes.textField}
-          value={props.level}
-          onChange={(event)=>props.handleChange(event.target.value)}
+          className="textField"
+          value={props.value}
+          type={props.type}
+          onChange={(event)=>props.handleChange(event)}
         />
     )
 }
+
+TextInput.defaultProps = {
+  id: "",
+  label: "",
+  value: "",
+  type: "text",
+  handleChange: function(event) {
+    return event.target.value;
+  }
+};

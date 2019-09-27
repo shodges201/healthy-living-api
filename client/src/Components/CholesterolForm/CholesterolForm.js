@@ -14,6 +14,7 @@ class CholesterolForm extends Component {
         this.setState({ date: date })
     }
     handleLevel = level => {
+        level = level.target.value;
         if (level[level.length - 1] !== '0' && !Number(level[level.length - 1])) {
             console.log(level[level.length - 1]);
             level = level.substr(0, level.length - 1);
@@ -31,7 +32,7 @@ class CholesterolForm extends Component {
             <div className="container">
                 <div className='root'>
                     <DateSelector handleChange={this.handleDate} selectedDate={this.state.date.toDateString()} />
-                    <TextInput label="cholesterol level" level={this.state.level} handleChange={this.handleLevel} />
+                    <TextInput label="cholesterol level" value={this.state.level} handleChange={this.handleLevel} />
                     <CompleteButton handleForm={this.handleClick} />
                 </div>
             </div>

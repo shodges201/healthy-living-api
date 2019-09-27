@@ -2,6 +2,7 @@
     flex-grow: 1;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .container{
@@ -11,4 +12,8 @@
 
 .formItem{
     margin: auto;
+}
+
+.textField{
+    width: 200px;
 }

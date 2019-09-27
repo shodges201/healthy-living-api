@@ -1,0 +1,20 @@
+.container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+}
+
+.form{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    position: relative;
+    top: 50%;
+}
+
+.button{
+    /* align-self: flex-end; */
+    align-self: flex-start;
+    display: block;
+    height: 100%;
+}

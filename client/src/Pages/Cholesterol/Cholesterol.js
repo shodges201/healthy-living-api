@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Graph from '../../Components/Graph/Graph.js';
-import CholesterolForm from '../../Components/CholesterolForm/CholesterolForm.js';
 import './Cholesterol.css';
 
 class Cholesterol extends Component {

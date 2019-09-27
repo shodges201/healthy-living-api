@@ -14,6 +14,8 @@ class HeartRateForm extends Component {
         this.setState({ date: date })
     }
     handleLevel = level => {
+        console.log(level.target.id);
+        level = level.target.value;
         if (level[level.length - 1] !== '0' && !Number(level[level.length - 1])) {
             console.log(level[level.length - 1]);
             level = level.substr(0, level.length - 1);
@@ -31,7 +33,7 @@ class HeartRateForm extends Component {
             <div className="container">
                 <div className='root'>
                     <DateSelector handleChange={this.handleDate} selectedDate={this.state.date.toDateString()} />
-                    <TextInput label="Heart Rate" level={this.state.level} handleChange={this.handleLevel} />
+                    <TextInput name="great" label="Heart Rate" value={this.state.level} handleChange={this.handleLevel} />
                     <CompleteButton handleForm={this.handleClick} />
                 </div>
             </div>

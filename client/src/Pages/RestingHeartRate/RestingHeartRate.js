@@ -11,7 +11,7 @@ class RestingHeartRate extends Component {
     render() {
         return (
             <>
-                <Graph data={this.state.data} caption="Heart Rate Tracking" yAxisLabel="Resting Heart Rate" suffix="BPM" url="api/heartrate" />
+                <Graph caption="Heart Rate Tracking" yAxisLabel="Resting Heart Rate" suffix="BPM" url="api/heartrate" />
             </>
         );
     }
