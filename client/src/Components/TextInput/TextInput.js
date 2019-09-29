@@ -7,7 +7,7 @@ export default function TextInput(props) {
         <TextField
           id={`${props.label}TextInput`}
           label={props.label}
-          className="textField"
+          className={props.class}
           value={props.value}
           type={props.type}
           onChange={(event)=>props.handleChange(event)}
@@ -20,6 +20,7 @@ TextInput.defaultProps = {
   label: "",
   value: "",
   type: "text",
+  class: "textField",
   handleChange: function(event) {
     return event.target.value;
   }

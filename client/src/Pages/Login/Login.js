@@ -22,9 +22,9 @@ class Login extends Component {
         return (
             <div className="container">
                 <form className="form">
-                    <TextInput label="username" value={this.state.username} handleChange={this.handleChange} />
-                    <TextInput label="password" type="password" value={this.state.password} handleChange={this.handleChange} />
-                    <CompleteButton text="Sign Up" handleForm={this.formSubmit} size="medium"/>
+                    <TextInput label="username" value={this.state.username} handleChange={this.handleChange} class="formItem"/>
+                    <TextInput label="password" type="password" value={this.state.password} handleChange={this.handleChange} class="formItem"/>
+                    <CompleteButton text="Sign Up" handleForm={this.formSubmit} size="medium" class="button"/>
                 </form>
             </div>
         );

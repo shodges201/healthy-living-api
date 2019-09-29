@@ -14,7 +14,13 @@
 
 .button{
     /* align-self: flex-end; */
-    align-self: flex-start;
+    /* align-self: flex-start;
     display: block;
-    height: 100%;
+    width: 100%; */
+}
+
+.formItem{
+    width: 50%;
+    align-self: flex-start;
+    margin-left: 0px;
 }

@@ -12,7 +12,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
-import { flexbox } from '@material-ui/system';
 
 const useStyles = makeStyles({
   list: {
