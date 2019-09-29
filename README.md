@@ -32,5 +32,5 @@ Healthy Living is created using React.js, because many of the pages involved in 
 
 
 ## Contributing Members
-* **Scott Hodges **[GitHub](http://github.com)
+* **Scott Hodges ** [shodges201@gmail.com](shodges201@gmail.com)
 
