@@ -5,7 +5,7 @@ const router = require("express").Router();
 router.post("/getAll", (req, res) => {
     //console.log(req.body);
     //console.log(req.body.user);
-    db.getAllCholesterol(req.body.user, function(data){
+    db.getAllCholesterol(req.body.userID, function(data){
         //console.log(data);
         res.json(data);
     })
@@ -14,7 +14,7 @@ router.post("/getAll", (req, res) => {
 router.post('/new', (req, res) => {
     //console.log(req.body);
     //console.log(req.body.user);
-    db.addNewCholesterol('scott', req.body.date, req.body.amount, function(data){
+    db.addNewCholesterol(req.body.userID, req.body.date, req.body.amount, function(data){
         //console.log(data);
         res.json(data);
     })

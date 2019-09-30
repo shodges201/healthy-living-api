@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 const routes = require('./routes');
+const admin = require('firebase-admin');
 
 //const routes = require("./routes");
 const app = express();
@@ -10,7 +11,6 @@ const PORT = process.env.PORT || 9000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 // Add routes, both API and view
 app.use(routes);
 
@@ -18,6 +18,12 @@ app.use(routes);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
+  databaseURL: "https://healthy-living-5cb07.firebaseio.com"
+});
+
 
 app.listen(PORT, () => {
   console.log('Node server running on port ' + PORT);

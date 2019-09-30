@@ -2,6 +2,7 @@ const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./cholesterol/cholesterol");
 const heartRate = require("./heartRate/heartRate");
+// const firebase = require('firebase-admin');
 
 // API Routes
 router.use("/api/cholesterol/", apiRoutes);
