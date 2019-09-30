@@ -23,7 +23,7 @@ class Graph extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ user: 'scott' })
+      body: JSON.stringify({ userID: this.props.user.uid })
     }).then(data => data.json()).then((data) => {
       console.log('fetch resp');
       console.log(data);
@@ -41,7 +41,7 @@ class Graph extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ date: date, amount: amount })
+      body: JSON.stringify({ date: date, amount: amount, userID: this.props.user.uid})
     }).then(data => data.json()).then((data) => {
       cb();
       this.getAllData(entries => {

@@ -18,14 +18,14 @@ export default class App extends Component {
 
   componentDidMount() {
     this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-        (user) => {
-          console.log(user);
-          console.log(!!user);
-          this.setState({loggedIn: !!user})
-        }
+      (user) => {
+        console.log(user.uid);
+        console.log(!!user);
+        this.setState({ loggedIn: !!user, user: user})
+      }
     );
   }
-  
+
   // Make sure we un-register Firebase observers when the component unmounts.
   componentWillUnmount() {
     this.unregisterAuthObserver();
@@ -37,23 +37,56 @@ export default class App extends Component {
     cb();
   }
 
+  logout = () => {
+    console.log(firebase.auth().currentUser);
+    firebase.auth().signOut();
+    this.setState({loggedIn: false, user: null});
+    history.push('/Home');
+  }
+
   render() {
-    return (
-      <div>
-        <Router history={history}>
-          <NavTabs />
-          <Route exact path="/Home" component={Home} />
-          <Route exact path="/Login" render={() => (
-            <Login
-              signIn={this.signIn}
-              loggedIn={this.state.loggedIn}
-            />)} 
+    if (!this.state.loggedIn) {
+      return (
+        <div>
+          <Router history={history}>
+            <NavTabs loggedIn={this.state.loggedIn}/>
+            <Route exact path="/Home" component={Home} />
+            <Route exact path="/Login" render={() => (
+              <Login
+                signIn={this.signIn}
+                loggedIn={this.state.loggedIn}
+              />)}
             />
             <Route exact path="/Signup" component={Signup} />
-            <Route exact path="/Cholesterol" component={Cholesterol} />
-            <Route exact path="/RestingHeartRate" component={RestingHeartRate} />
-        </Router>
-      </div>
-        );
-      }
+          </Router>
+        </div>
+      );
     }
+    else{
+  return(
+  <div>
+  <Router history={history}>
+    <NavTabs logout={this.logout} loggedIn={this.state.loggedIn}/>
+    <Route exact path="/Home" component={Home} />
+    <Route exact path="/Login" render={() => (
+      <Login
+        signIn={this.signIn}
+        loggedIn={this.state.loggedIn}
+      />)}
+    />
+    <Route exact path="/Signup" component={Signup} />
+    <Route exact path="/Cholesterol" render={() => (
+      <Cholesterol
+        user={this.state.user}
+      />)}
+    />
+    <Route exact path="/RestingHeartRate" render={() => (
+      <RestingHeartRate
+        user={this.state.user}
+      />)}
+    />
+  </Router>
+  </div >);
+  }
+  }
+}

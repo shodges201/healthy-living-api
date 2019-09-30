@@ -43,9 +43,11 @@ const useStyles = makeStyles({
   }
 });
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer(props) {
   const classes = useStyles();
-  const menuItems = ['Home', 'Cholesterol', 'Resting Heart Rate', 'Other'];
+  console.log(props.loggedIn);
+  const menuItems = props.loggedIn ? ['Home', 'Cholesterol', 'Resting Heart Rate', 'Other'] : ['Home', 'Log In'];
+  console.log(menuItems);
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -79,7 +81,49 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [side]: open });
   };
-
+  console.log(props.loggedIn);
+  if (!props.loggedIn) {
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar
+          position="sticky"
+        >
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer('left', true)}
+              edge="start"
+              className={clsx(classes.menuButton, state.left && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Link to="/Home" className={classes.headerText}>
+              <Typography variant="h5" noWrap>
+                Healthy Life Style
+            </Typography>
+            </Link>
+            <div className={classes.rightHeaderLinks}>
+              <Link to="/Login" className={classes.headerText}>
+                <Typography variant="h5" noWrap>
+                  Login
+            </Typography>
+              </Link>
+              <Link to="/Signup" className={classes.headerText} style={{ marginLeft: "30px" }}>
+                <Typography variant="h5" noWrap>
+                  Signup
+            </Typography>
+              </Link>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+          {sideList('left')}
+        </Drawer>
+      </div>
+    );
+  }
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -99,19 +143,12 @@ export default function TemporaryDrawer() {
           <Link to="/Home" className={classes.headerText}>
             <Typography variant="h5" noWrap>
               Healthy Life Style
-            </Typography>
+          </Typography>
           </Link>
           <div className={classes.rightHeaderLinks}>
-            <Link to="/Login" className={classes.headerText }>
-              <Typography variant="h5" noWrap>
-                Login
+            <Typography variant="h5" noWrap onClick={props.logout} style={{cursor: "pointer"}}>
+              Logout
             </Typography>
-            </Link>
-            <Link to="/Signup" className={classes.headerText} style={{marginLeft: "30px"}}>
-              <Typography variant="h5" noWrap>
-                Signup
-            </Typography>
-            </Link>
           </div>
         </Toolbar>
       </AppBar>
