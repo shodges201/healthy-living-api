@@ -7,6 +7,7 @@ import {
 } from '@material-ui/pickers';
 import './DateSelector.css';
 
+import blue from '@material-ui/core/colors/blue';
 
 export default function MaterialUIPickers(props) {
 
@@ -15,6 +16,7 @@ export default function MaterialUIPickers(props) {
   };
 
   return (
+    
     <MuiPickersUtilsProvider utils={DateFnsUtils} className="date-selector">
       <KeyboardDatePicker
         margin="normal"
@@ -26,6 +28,7 @@ export default function MaterialUIPickers(props) {
         KeyboardButtonProps={{
           "aria-label": "change date"
         }}
+        className="date-selector"
       />
     </MuiPickersUtilsProvider >
   );

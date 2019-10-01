@@ -5,6 +5,8 @@ import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import HeartRateForm from '../../Components/HeartRateForm/HeartRateForm.js';
 import CholesterolForm from '../../Components/CholesterolForm/CholesterolForm';
+import { Container } from '@material-ui/core';
+import "./Graph.css";
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
@@ -51,7 +53,7 @@ class Graph extends Component {
           chartConfigs: {
             type: 'line',// The chart type
             width: '100%', // Width of the chart
-            height: '400', // Height of the chart
+            height: '600', // Height of the chart
             dataFormat: 'json',
             dataSource: {
               "chart": {
@@ -78,7 +80,7 @@ class Graph extends Component {
         chartConfigs: {
           type: 'line',// The chart type
           width: '100%', // Width of the chart
-          height: '400', // Height of the chart
+          height: '60%', // Height of the chart
           dataFormat: 'json',
           dataSource: {
             "chart": {
@@ -110,12 +112,12 @@ class Graph extends Component {
 
   render() {
     return (
-      <>
+      <Container className="wrapper" maxWidth="xl">
         <ReactFC
           {...this.state.chartConfigs}
         />
         {this.conditionalForm()}
-      </>);
+      </Container>);
   }
 }
 

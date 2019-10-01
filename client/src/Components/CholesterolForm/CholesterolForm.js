@@ -3,6 +3,82 @@ import DateSelector from '../DateSelector/DateSelector.js'
 import TextInput from '../TextInput/TextInput.js';
 import CompleteButton from '../CompleteButton/CompleteButton.js';
 import './CholesterolForm.css';
+import { createMuiTheme } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
+import { isWithinInterval } from 'date-fns/esm';
+
+const theme = createMuiTheme({
+    overrides: {
+        // Style sheet name ⚛️
+        MuiInput: {
+            root: {
+                // Name of the rule
+                color: 'white',
+                borderBottom: `2px solid white`,
+                "&$focused": {
+                    color: 'white',
+                    borderBottom: `2px solid white`,
+                },
+            },
+            underline: {
+                color: 'white',
+                borderBottom: `2px solid white`,
+                '&:before': {
+                    borderBottom: "0px"
+                },
+                '&:after': {
+                    borderBottom: "0px"
+                },
+                "&$focused": {
+                    color: 'white',
+                    borderBottom: `2px solid white`,
+                },
+                '&:hover:not($disabled):after': {
+                    borderBottom: `2px solid white`,
+                    transform: ""
+                },
+                '&:hover:not($disabled):before': {
+                    borderBottom: `2px solid white`,          // String should be terminated
+                },
+              },
+        },
+        MuiFormLabel: {
+            root: {
+                color: 'white',
+                "&$focused": {
+                    color: 'white'
+                }
+            },
+
+        },
+        MuiInputLabel: {
+            root: {
+                color: 'white',
+                "&$focused": {
+                    color: 'white'
+                },
+            },
+
+        },
+        MuiIconButton: {
+            root: {
+                color: 'white',
+            }
+        },
+        MuiInputAdornment: {
+            root: {
+            }
+        },
+        MuiInputBase: {
+            root: {
+                "&$focused": {
+                    color: 'white',
+                    borderBottom: `2px solid white`,
+                },
+            }
+        }
+    },
+});
 
 class CholesterolForm extends Component {
     state = {
@@ -29,13 +105,15 @@ class CholesterolForm extends Component {
     }
     render() {
         return (
-            <div className="container">
-                <div className='root'>
-                    <DateSelector handleChange={this.handleDate} selectedDate={this.state.date.toDateString()} />
-                    <TextInput label="cholesterol level" value={this.state.level} handleChange={this.handleLevel} />
-                    <CompleteButton handleForm={this.handleClick} />
+            <ThemeProvider theme={theme}>
+                <div className="container">
+                    <div className='root'>
+                        <DateSelector handleChange={this.handleDate} selectedDate={this.state.date.toDateString()} />
+                        <TextInput label="cholesterol level" value={this.state.level} handleChange={this.handleLevel} />
+                        <CompleteButton handleForm={this.handleClick} />
+                    </div>
                 </div>
-            </div>
+            </ThemeProvider>
         );
     }
 }

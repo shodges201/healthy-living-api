@@ -12,6 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   list: {
@@ -87,7 +88,7 @@ export default function TemporaryDrawer(props) {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
-          position="sticky"
+          position="fixed"
         >
           <Toolbar>
             <IconButton
@@ -113,7 +114,7 @@ export default function TemporaryDrawer(props) {
               <Link to="/Signup" className={classes.headerText} style={{ marginLeft: "30px" }}>
                 <Typography variant="h5" noWrap>
                   Signup
-            </Typography>
+                </Typography>
               </Link>
             </div>
           </Toolbar>
@@ -128,7 +129,7 @@ export default function TemporaryDrawer(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="sticky"
+        position="fixed"
       >
         <Toolbar>
           <IconButton
@@ -146,9 +147,9 @@ export default function TemporaryDrawer(props) {
           </Typography>
           </Link>
           <div className={classes.rightHeaderLinks}>
-            <Typography variant="h5" noWrap onClick={props.logout} style={{cursor: "pointer"}}>
+            <Button onClick={props.logout} style={{color: "white"}}>
               Logout
-            </Typography>
+            </Button>
           </div>
         </Toolbar>
       </AppBar>

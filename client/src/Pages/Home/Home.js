@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import "./Home.css";
 
 class Home extends Component {
-    state = { loggedIn: false }
+    state = {  }
 
     componentDidMount = () => {
-        
+
     }
 
     render() { 
-        return ( this.state.loggedIn );
+        return (
+            <img className="background">
+                
+            </img>
+        );
     }
 }
  

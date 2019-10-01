@@ -9,6 +9,7 @@ import Home from '../Home/Home';
 import Signup from "../Signup/Signup";
 import firebase from '../../firebase';
 import history from '../../history';
+import Background from "../../images/darkBackground.jpg";
 
 export default class App extends Component {
   state = {
@@ -47,7 +48,7 @@ export default class App extends Component {
   render() {
     if (!this.state.loggedIn) {
       return (
-        <div>
+        <div className="background">
           <Router history={history}>
             <NavTabs loggedIn={this.state.loggedIn}/>
             <Route exact path="/Home" component={Home} />
@@ -64,7 +65,7 @@ export default class App extends Component {
     }
     else{
   return(
-  <div>
+  <div className="background" style={{backgroundImage:`url(${Background})`}}>
   <Router history={history}>
     <NavTabs logout={this.logout} loggedIn={this.state.loggedIn}/>
     <Route exact path="/Home" component={Home} />
