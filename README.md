@@ -19,6 +19,13 @@ The purpose of this project was to create an easy-to-use tool for tracking healt
 ## Project Description
 Healthy Living is created using React.js, because many of the pages involved in the app are very similar in the way that they are structured so it made sense to reuse components for each of those pages in order to reduce code reuse. The project aims to allow users to track their health indicator data over time in an easy to manage manner. There are seperate pages for each health indicator and each page has an interface for users to add data to their existing data, and a graph of existing data that automatically updates when the user adds new data to their history as well.
 
+## Todo
+* Add a home page 
+* Format Forms for adding new data points better
+* Add more health indicators
+* Add different login options
+* Error Handling for data fetching, failed login, no graph data, etc.
+
 ## Getting Started
 
 1. Clone this repo (for help see this [tutorial](https://help.github.com/articles/cloning-a-repository/)).
