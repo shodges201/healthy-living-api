@@ -22,8 +22,9 @@ export default class LogIn extends React.Component {
     callbacks: {
       // Avoid redirects after sign-in.
       signInSuccessWithAuthResult: () => {
-          this.props.signIn(firebase.auth().currentUser);
-          history.push('/Home');
+          this.props.signIn(firebase.auth().currentUser, () => {
+            history.push('/');
+          });
       }
     },
 

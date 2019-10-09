@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import NavTabs from '../../Components/NavTabs/NavTabs'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import Cholesterol from '../Cholesterol/Cholesterol.js';
 import RestingHeartRate from '../RestingHeartRate/RestingHeartRate.js';
 import Login from "../Login/Login.js";
@@ -22,7 +22,7 @@ export default class App extends Component {
       (user) => {
         console.log(user.uid);
         console.log(!!user);
-        this.setState({ loggedIn: !!user, user: user})
+        this.setState({ loggedIn: !!user, user: user })
       }
     );
   }
@@ -41,18 +41,26 @@ export default class App extends Component {
   logout = () => {
     console.log(firebase.auth().currentUser);
     firebase.auth().signOut();
-    this.setState({loggedIn: false, user: null});
+    this.setState({ loggedIn: false, user: null });
     history.push('/Home');
   }
 
   render() {
     if (!this.state.loggedIn) {
       return (
-        <div className="background">
+        <div className="background" style={{ backgroundImage: `url(${Background})`}}>
           <Router history={history}>
-            <NavTabs loggedIn={this.state.loggedIn}/>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/Home" component={Home} />
+            <NavTabs loggedIn={this.state.loggedIn} />
+            <Route exact path="/" render={() => (
+              <div className="Home">
+                <Home />
+              </div>
+            )} />
+            <Route exact path="/Home" render={() => (
+              <div className="Home">
+                <Home />
+              </div>
+            )} />
             <Route exact path="/Login" render={() => (
               <Login
                 signIn={this.signIn}
@@ -64,40 +72,40 @@ export default class App extends Component {
         </div>
       );
     }
-    else{
-  return(
-  <div className="background" style={{backgroundImage:`url(${Background})`}}>
-  <Router history={history}>
-    <NavTabs logout={this.logout} loggedIn={this.state.loggedIn}/>
-    <Route exact path="/" render={() => (
-      <div className="Home">
-        <Home/>
-      </div>
-      )} />
-    <Route exact path="/Home" render={() => (
-      <div className="Home">
-        <Home/>
-      </div>
-      )} />
-    <Route exact path="/Login" render={() => (
-      <Login
-        signIn={this.signIn}
-        loggedIn={this.state.loggedIn}
-      />)}
-    />
-    <Route exact path="/Signup" component={Signup} />
-    <Route exact path="/Cholesterol" render={() => (
-      <Cholesterol
-        user={this.state.user}
-      />)}
-    />
-    <Route exact path="/RestingHeartRate" render={() => (
-      <RestingHeartRate
-        user={this.state.user}
-      />)}
-    />
-  </Router>
-  </div >);
-  }
+    else {
+      return (
+        <div className="background" style={{ backgroundImage: `url(${Background})` }}>
+          <Router history={history}>
+            <NavTabs logout={this.logout} loggedIn={this.state.loggedIn} />
+            <Route exact path="/" render={() => (
+              <div className="Home">
+                <Home />
+              </div>
+            )} />
+            <Route exact path="/Home" render={() => (
+              <div className="Home">
+                <Home />
+              </div>
+            )} />
+            <Route exact path="/Login" render={() => (
+              <Login
+                signIn={this.signIn}
+                loggedIn={this.state.loggedIn}
+              />)}
+            />
+            <Route exact path="/Signup" component={Signup} />
+            <Route exact path="/Cholesterol" render={() => (
+              <Cholesterol
+                user={this.state.user}
+              />)}
+            />
+            <Route exact path="/RestingHeartRate" render={() => (
+              <RestingHeartRate
+                user={this.state.user}
+              />)}
+            />
+          </Router>
+        </div >);
+    }
   }
 }
