@@ -1,13 +1,14 @@
 import * as firebase from 'firebase';
+const env = require("dotenv");
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBYlIdeeUuVrdvop0ZhDnatkfZWscvoPnE",
+    apiKey: process.env.FIREBASE_KEY,
     authDomain: "healthy-living-5cb07.firebaseapp.com",
     databaseURL: "https://healthy-living-5cb07.firebaseio.com",
     projectId: "healthy-living-5cb07",
     storageBucket: "",
     messagingSenderId: "996770199690",
-    appId: "1:996770199690:web:1af66a8b7fef7ee6b95573",
+    appId: process.env.FIREBASE_APPID,
     measurementId: "G-HGLF370KX0"
   };
 // Initialize Firebase
