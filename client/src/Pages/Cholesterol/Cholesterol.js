@@ -14,7 +14,7 @@ class Cholesterol extends Component {
     render() {
         return (
             <>
-                <Graph caption="Cholesterol Tracking" yAxisLabel="Total Cholesterol Level" suffix="mg/dl" url="api/cholesterol" user={this.props.user}/>
+                <Graph type="cholesterol" caption="Cholesterol Level" yAxisLabel="Total Cholesterol Level" suffix="mg/dl" url="api/cholesterol" user={this.props.user}/>
             </>
         );
     }

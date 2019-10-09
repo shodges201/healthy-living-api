@@ -2,7 +2,6 @@
 import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
-import { throws } from 'assert';
 import history from '../../history';
 
 export default class LogIn extends React.Component {

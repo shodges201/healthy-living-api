@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import DateSelector from '../DateSelector/DateSelector.js'
 import TextInput from '../TextInput/TextInput.js';
 import CompleteButton from '../CompleteButton/CompleteButton.js';
-import './CholesterolForm.css';
+import './NewItemForm.css';
 import { createMuiTheme } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
-import { isWithinInterval } from 'date-fns/esm';
 
 const theme = createMuiTheme({
     overrides: {
@@ -80,7 +79,13 @@ const theme = createMuiTheme({
     },
 });
 
-class CholesterolForm extends Component {
+class NewItemForm extends Component {
+
+    constructor(props){
+        super(props);
+        this.type = props.type;
+        this.caption = props.caption;
+    }
     state = {
         date: new Date(),
         level: 0,
@@ -109,7 +114,7 @@ class CholesterolForm extends Component {
                 <div className="container">
                     <div className='root'>
                         <DateSelector handleChange={this.handleDate} selectedDate={this.state.date.toDateString()} />
-                        <TextInput label="cholesterol level" value={this.state.level} handleChange={this.handleLevel} />
+                        <TextInput label={`${this.caption}`} value={this.state.level} handleChange={this.handleLevel} />
                         <CompleteButton handleForm={this.handleClick} />
                     </div>
                 </div>
@@ -118,4 +123,4 @@ class CholesterolForm extends Component {
     }
 }
 
-export default CholesterolForm;
+export default NewItemForm;

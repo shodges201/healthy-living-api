@@ -47,7 +47,7 @@ const useStyles = makeStyles({
 export default function TemporaryDrawer(props) {
   const classes = useStyles();
   console.log(props.loggedIn);
-  const menuItems = props.loggedIn ? ['Home', 'Cholesterol', 'Resting Heart Rate', 'Other'] : ['Home', 'Log In'];
+  const menuItems = props.loggedIn ? ['Home', 'Cholesterol', 'Resting Heart Rate'] : ['Home', 'Log In'];
   console.log(menuItems);
   const [state, setState] = React.useState({
     top: false,

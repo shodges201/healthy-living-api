@@ -7,8 +7,6 @@ import {
 } from '@material-ui/pickers';
 import './DateSelector.css';
 
-import blue from '@material-ui/core/colors/blue';
-
 export default function MaterialUIPickers(props) {
 
   const handleDateChange = date => {

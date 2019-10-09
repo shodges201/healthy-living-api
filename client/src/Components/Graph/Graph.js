@@ -3,8 +3,7 @@ import FusionCharts from "fusioncharts";
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import HeartRateForm from '../../Components/HeartRateForm/HeartRateForm.js';
-import CholesterolForm from '../../Components/CholesterolForm/CholesterolForm';
+import NewItemForm from '../../Components/NewItemForm/NewItemForm'
 import { Container } from '@material-ui/core';
 import "./Graph.css";
 
@@ -98,25 +97,13 @@ class Graph extends Component {
     })
   }
 
-  conditionalForm = () => {
-    if(window.location.pathname === '/Cholesterol'){
-      return <CholesterolForm addNewData={this.addNewData} />;
-    }
-    // else if(window.location.pathname === '/Cholesterol'){
-
-    // }
-    else{
-     return <HeartRateForm addNewData={this.addNewData} /> ;
-    }
-  }
-
   render() {
     return (
       <Container className="wrapper" maxWidth="xl">
         <ReactFC
           {...this.state.chartConfigs}
         />
-        {this.conditionalForm()}
+        <NewItemForm label={this.props.type} caption={this.props.caption}/>
       </Container>);
   }
 }

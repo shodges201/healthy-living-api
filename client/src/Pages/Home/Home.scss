@@ -1,0 +1,40 @@
+$main-color: white;
+$navtabs-height: 64px;
+$header-textSize: 30px;
+$explanation-textSize: 25px; 
+
+.container{
+    //background: $main-color;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 3fr 2fr;
+}
+
+.welcome{
+    color: white;
+    text-align: center;
+    font-size: $header-textSize;
+    align-self: center;
+    h1{
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+    h5{
+        margin-top: 10px;
+        margin-bottom: 0px;
+    }
+} 
+
+.explanation{
+    background: $main-color;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: auto;
+
+    div{
+        text-align: center;
+        align-self: center;
+        font-size: $explanation-textSize;
+    }
+}
