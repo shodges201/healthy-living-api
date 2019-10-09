@@ -18,7 +18,7 @@ app.use(routes);
 // Serve up static assets (usually on heroku)
 console.log(path.join(__dirname, 'build', 'index.html'));
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, 'build', 'index.html')));
+  app.use(express.static(path.join(__dirname, 'build')));
 }
 
 admin.initializeApp({
