@@ -12,14 +12,14 @@ const PORT = process.env.PORT || 9000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Serve up static assets (usually on heroku)
+console.log();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 // Add routes, both API and view
 app.use(routes);
-
-// Serve up static assets (usually on heroku)
-console.log(path.join(__dirname, 'build', 'index.html'));
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, 'build')));
-}
 
 admin.initializeApp({
   credential: admin.credential.applicationDefault(),
