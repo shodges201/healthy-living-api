@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 const admin = require('firebase-admin');
+const path = require("path");
 
 //const routes = require("./routes");
 const app = express();
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(routes);
 
 // Serve up static assets (usually on heroku)
+console.log(path.join(__dirname, 'build', 'index.html'));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, 'build', 'index.html')));
 }
