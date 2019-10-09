@@ -4,13 +4,13 @@ console.log(process.env);
 console.log(process.env.FIREBASE_KEY);
 
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_KEY,
+    apiKey: "AIzaSyBYlIdeeUuVrdvop0ZhDnatkfZWscvoPnE",
     authDomain: "healthy-living-5cb07.firebaseapp.com",
     databaseURL: "https://healthy-living-5cb07.firebaseio.com",
     projectId: "healthy-living-5cb07",
     storageBucket: "",
     messagingSenderId: "996770199690",
-    appId: process.env.FIREBASE_APPID,
+    appId: "1:996770199690:web:1af66a8b7fef7ee6b95573",
     measurementId: "G-HGLF370KX0"
   };
 // Initialize Firebase
