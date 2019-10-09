@@ -51,6 +51,7 @@ export default class App extends Component {
         <div className="background">
           <Router history={history}>
             <NavTabs loggedIn={this.state.loggedIn}/>
+            <Route exact path="/" component={Home} />
             <Route exact path="/Home" component={Home} />
             <Route exact path="/Login" render={() => (
               <Login
@@ -68,6 +69,11 @@ export default class App extends Component {
   <div className="background" style={{backgroundImage:`url(${Background})`}}>
   <Router history={history}>
     <NavTabs logout={this.logout} loggedIn={this.state.loggedIn}/>
+    <Route exact path="/" render={() => (
+      <div className="Home">
+        <Home/>
+      </div>
+      )} />
     <Route exact path="/Home" render={() => (
       <div className="Home">
         <Home/>
