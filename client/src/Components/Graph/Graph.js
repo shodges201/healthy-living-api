@@ -19,7 +19,7 @@ class Graph extends Component {
 
 
   getAllData = (cb) => {
-    fetch(`${this.props.url}/getAll`, {
+    fetch(`/api/${this.props.url}/getAll`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ class Graph extends Component {
   }
 
   addNewData = (date, amount, cb) => {
-    fetch(`${this.props.url}/new`, {
+    fetch(`/api/${this.props.url}/new`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
