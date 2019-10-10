@@ -1,2 +1,0 @@
-CREATE TABLE heartrate (id INT auto_increment PRIMARY KEY, user VARCHAR(255), amount INT, date DATE);
-CREATE TABLE cholesterol (id INT auto_increment PRIMARY KEY, user VARCHAR(255), amount INT, date DATE);
