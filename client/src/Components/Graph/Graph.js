@@ -19,7 +19,7 @@ class Graph extends Component {
 
 
   getAllData = (cb) => {
-    fetch(`/api/${this.props.url}/getAll`, {
+    fetch(`${this.props.url}/getAll`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ class Graph extends Component {
   }
 
   addNewData = (date, amount, cb) => {
-    fetch(`/api/${this.props.url}/new`, {
+    fetch(`${this.props.url}/new`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -103,7 +103,7 @@ class Graph extends Component {
         <ReactFC
           {...this.state.chartConfigs}
         />
-        <NewItemForm label={this.props.type} caption={this.props.caption}/>
+        <NewItemForm label={this.props.type} caption={this.props.caption} addNewData={this.addNewData}/>
       </Container>);
   }
 }
