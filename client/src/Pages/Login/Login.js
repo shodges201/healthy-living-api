@@ -1,7 +1,6 @@
 // Import FirebaseAuth and firebase.
 import React from 'react';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import firebase from 'firebase';
+import "./Login.css";
 import history from '../../history';
 
 export default class LogIn extends React.Component {
@@ -10,43 +9,27 @@ export default class LogIn extends React.Component {
     isSignedIn: false // Local signed-in state.
   };
 
-  // Configure FirebaseUI.
-  uiConfig = {
-    // Popup signin flow rather than redirect flow.
-    signInFlow: 'popup',
-    // We will display Google and Facebook as auth providers.
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID
-    ],
-    callbacks: {
-      // Avoid redirects after sign-in.
-      signInSuccessWithAuthResult: () => {
-          this.props.signIn(firebase.auth().currentUser, () => {
-            history.push('/');
-          });
-      }
-    },
-
-  };
-
   render() {
-    if (!this.props.loggedIn) {
+    return(
+    <div class="middle">
+      <h1 className="example">Login here</h1>
+    </div>);
+
+    /*if (!this.props.loggedIn) {
       return (
-        <div>
+        <div class="form">
           <h1>My App</h1>
           <p>Please sign-in:</p>
-          <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()}/>
         </div>
       );
     }
     return (
       <div>
         <h1>My App</h1>
-        <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-        <button onClick={() => firebase.auth().signOut()}>Sign-out</button>
+        <p>Welcome {"name"}! You are now signed-in!</p>
+        <button onClick={null}>Sign-out</button>
       </div>
-    );
+    ); */
   }
 }
 

@@ -7,7 +7,6 @@ import RestingHeartRate from '../RestingHeartRate/RestingHeartRate.js';
 import Login from "../Login/Login.js";
 import Home from '../Home/Home';
 import Signup from "../Signup/Signup";
-import firebase from '../../firebase';
 import history from '../../history';
 import Background from "../../images/darkBackground.jpg";
 
@@ -18,13 +17,6 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-      (user) => {
-        console.log(user.uid);
-        console.log(!!user);
-        this.setState({ loggedIn: !!user, user: user })
-      }
-    );
   }
 
   // Make sure we un-register Firebase observers when the component unmounts.
@@ -39,10 +31,6 @@ export default class App extends Component {
   }
 
   logout = () => {
-    console.log(firebase.auth().currentUser);
-    firebase.auth().signOut();
-    this.setState({ loggedIn: false, user: null });
-    history.push('/Home');
   }
 
   render() {

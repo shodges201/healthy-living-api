@@ -24,3 +24,11 @@
     align-self: flex-start;
     margin-left: 0px;
 }
+
+.example{
+    color: white;
+}
+
+.middle{
+    margin-top: 50%;
+}

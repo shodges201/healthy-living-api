@@ -3,7 +3,7 @@ import './Signup.css';
 import TextInput from "../../Components/TextInput/TextInput";
 import CompleteButton from "../../Components/CompleteButton/CompleteButton";
 
-class Login extends Component {
+class Signup extends Component {
     state = {
         username: "",
         password: "",
@@ -33,4 +33,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Signup;

@@ -7,7 +7,7 @@
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd client && npm run start",
+    "client": "cd ../client && npm run start",
     "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
@@ -27,9 +27,9 @@
     "body-parser": "^1.19.0",
     "dotenv": "^8.1.0",
     "express": "^4.16.3",
-    "firebase-admin": "^8.6.0",
     "if-env": "^1.0.4",
-    "mysql": "^2.17.1"
+    "mongodb": "^3.5.2",
+    "mongoose": "^5.8.11"
   },
   "bugs": {
     "url": "https://github.com/shodges201/healthy-living/issues"
