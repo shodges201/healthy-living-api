@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 })
 
 // route /api/heartrate/getAll
-router.get("/getAll", (req, res) => {
+router.get("/getAllUser", (req, res) => {
     db.HeartRate.find().then((results, err) => {
         if(err) {
             console.log('Error: ' + err);

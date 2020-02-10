@@ -3,14 +3,17 @@ const Schema = mongoose.Schema;
 
 const cholesterolSchema = new Schema({
     userID: {
-        type: mongoose.Types.ObjectId
+        type: mongoose.Types.ObjectId,
+        required: true
     },
     rate: {
-        type: Number
+        type: Number,
+        required: true
     },
     date: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        required: true
     }
 })
 
