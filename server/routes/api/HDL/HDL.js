@@ -2,37 +2,31 @@ const db = require("../../../models/index");
 const router = require("express").Router();
 const {body, validationResult} = require('express-validator');
 
-router.get("/", (req, res) => {
-    console.log("/heartrate");
-    res.send("heartrate");
-})
-
 // route /api/heartrate/getAll
 router.get("/getAllUser", (req, res) => {
-    db.HeartRate.find({
+    db.LDL.find({
         userID: req.session.user.id
-    }).then((err, heartRateInfo) => {
+    }).then((err, LDLInfo) => {
         if(err){
             return res.status(422).json(err);
         }
-        return res.status(200).json(heartRateInfo);
+        return res.status(200).json(LDLInfo);
     })
 })
 
 router.post('/new',[
-    body('rate').isInt({min: 10})
+    body('level').isInt({min: 10})
 ] ,(req, res) => {
-    console.log("here");
-    db.HeartRate.create({
+    db.LDL.create({
         userID: req.session.user.id,
-        rate: req.body.rate
-    }, (err, heartRateEntry) => {
+        level: req.body.level
+    }, (err, LDLEntry) => {
         if(err){
             return res.status(422).json(err);
         }
-        console.log(heartRateEntry);
+        console.log(LDLEntry);
         return res.status(200).json({
-            rate: heartRateEntry.rate
+            rate: LDLEntry.rate
         });
     })
 })

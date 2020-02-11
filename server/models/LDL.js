@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const cholesterolSchema = new Schema({
+const LDLSchema = new Schema({
     userID: {
         type: mongoose.Types.ObjectId,
         required: true
@@ -18,5 +18,5 @@ const cholesterolSchema = new Schema({
 })
 
 
-const Cholesterol = mongoose.model("Cholesterol", cholesterolSchema);
-module.exports = Cholesterol;
+const LDL = mongoose.model("LDL", LDLSchema);
+module.exports = LDL;

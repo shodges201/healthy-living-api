@@ -3,12 +3,15 @@ const router = require("express").Router();
 const apiRoutes = require("./cholesterol/cholesterol");
 const heartRate = require("./heartRate/heartRate");
 const user = require("./user/user");
-// const firebase = require('firebase-admin');
+const LDL = require("./LDL/LDL");
+const HDL = require("./HDL/HDL");
 
 // API Routes
 router.use("/cholesterol", apiRoutes);
 router.use("/heartrate", heartRate);
 router.use("/user", user);
+router.use("/LDL", LDL);
+router.use("/HDL", HDL);
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {

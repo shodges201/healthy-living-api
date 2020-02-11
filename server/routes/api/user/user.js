@@ -1,14 +1,14 @@
 const router = require("express").Router();
 const crypto = require("crypto");
 const db = require("../../../models");
-const { check, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 // signup new user
 router.post("/signup", [
-    check('username').isLength({ min: 3 }).trim().escape(),
-    check('email').isEmail().normalizeEmail(),
-    check('password').isLength({ min: 8 }),
-    check('externalType').isIn(['google', 'native'])
+    body('username').isLength({ min: 3 }).trim().escape(),
+    body('email').isEmail().normalizeEmail(),
+    body('password').isLength({ min: 8 }),
+    body('externalType').isIn(['google', 'native'])
 ], (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -30,18 +30,25 @@ router.post("/signup", [
             username: data.username,
             email: data.email
         };
+        const dbInfo = {
+            id: data._id,
+            username: data.username,
+            email: data.email
+        };
         const session = req.session;
-        session.user = userInfo;
+        session.user = dbInfo;
+        console.log(dbInfo);
         return res.status(200).json(userInfo);
     })
 })
 
 //login existing user
-router.post("/login", [
-    check('email').isEmail().normalizeEmail()
-], (req, res) => {
+//inputs: req.body.email, req.body.password
+router.post("/login", (req, res) => {
     console.log("/login");
+    console.log(req.body);
     const errors = validationResult(req);
+    console.log(errors);
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
     }
@@ -58,8 +65,14 @@ router.post("/login", [
                 username: user.username,
                 email: user.email
             };
+            const dbInfo = {
+                id: user._id,
+                username: user.username,
+                email: user.email
+            };
             const session = req.session;
-            session.user = userInfo;
+            session.user = dbInfo;
+            console.log(dbInfo);
             return res.status(200).json(userInfo);
         }
         return res.status(422).send("incorrect password");
