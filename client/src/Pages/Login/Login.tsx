@@ -4,7 +4,7 @@ import TextInput from "../../Components/TextInput/TextInput";
 import CompleteButton from "../../Components/CompleteButton/CompleteButton";
 
 interface LoginProps{
-  signIn?: Function;
+  signIn: Function;
   loggedIn?: boolean;
 }
 
@@ -43,6 +43,7 @@ class Login extends React.Component<LoginProps, LoginState>{
         })
         .then((userData) => {
           console.log(userData);
+          this.props.signIn(userData);
         })
         .catch((error) => {
           console.log("Error:" + error);

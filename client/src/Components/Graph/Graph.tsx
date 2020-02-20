@@ -16,7 +16,8 @@ interface GraphProps{
   user: {
     username?: string;
     email?: string;
-  }
+    id?: string;
+  };
 }
 
 interface GraphState{

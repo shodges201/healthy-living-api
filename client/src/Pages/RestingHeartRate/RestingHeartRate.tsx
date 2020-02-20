@@ -6,7 +6,8 @@ interface RestingHeartRateProps{
     user: {
         username?: string;
         email?: string;
-      }
+        id?: string;
+      };
 }
 
 interface RestingHeartRateState{

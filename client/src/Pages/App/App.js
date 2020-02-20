@@ -18,12 +18,20 @@ var App = /** @class */ (function (_super) {
             loggedIn: false,
             user: {}
         };
-        _this.signIn = function (user, cb) {
+        _this.signIn = function (user) {
             console.log(user);
+            console.log("logging in user");
             _this.setState({ user: user, loggedIn: true });
-            cb();
+            history.push("/");
         };
         _this.logout = function () {
+            fetch("/api/user/logout").
+                then(function (resp) {
+                if (!resp.ok) {
+                    throw new Error('Logout attempt was not ok');
+                }
+                _this.setState({ loggedIn: false, user: {} });
+            });
         };
         return _this;
     }
@@ -53,8 +61,6 @@ var App = /** @class */ (function (_super) {
                             React.createElement(Home, null))); } }),
                     React.createElement(Route, { exact: true, path: "/Home", render: function () { return (React.createElement("div", { className: "Home" },
                             React.createElement(Home, null))); } }),
-                    React.createElement(Route, { exact: true, path: "/Login", render: function () { return (React.createElement(Login, { signIn: _this.signIn, loggedIn: _this.state.loggedIn })); } }),
-                    React.createElement(Route, { exact: true, path: "/Signup", component: Signup }),
                     React.createElement(Route, { exact: true, path: "/Cholesterol", render: function () { return (React.createElement(Cholesterol, { user: _this.state.user })); } }),
                     React.createElement(Route, { exact: true, path: "/RestingHeartRate", render: function () { return (React.createElement(RestingHeartRate, { user: _this.state.user })); } }))));
         }

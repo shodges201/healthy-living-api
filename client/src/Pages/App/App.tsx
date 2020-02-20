@@ -9,7 +9,7 @@ import Home from '../Home/Home';
 import Signup from "../Signup/Signup";
 import history from '../../history';
 
-interface AppProps{
+interface AppProps {
 }
 
 interface AppState {
@@ -17,7 +17,8 @@ interface AppState {
   user: {
     username?: string;
     email?: string;
-  }
+    id?: string;
+  };
 }
 
 const Background = "/images/darkBackground.jpg"
@@ -35,19 +36,27 @@ export default class App extends Component<AppProps, AppState> {
   componentWillUnmount() {
   }
 
-  signIn = (user: AppState["user"], cb: Function) => {
+  signIn = (user: AppState["user"]) => {
     console.log(user);
+    console.log("logging in user");
     this.setState({ user: user, loggedIn: true });
-    cb();
+    history.push("/");
   }
 
   logout = () => {
+    fetch("/api/user/logout").
+    then((resp) => {
+      if (!resp.ok) {
+        throw new Error('Logout attempt was not ok');
+      }
+      this.setState({loggedIn: false, user: {}})
+    })
   }
 
   render() {
     if (!this.state.loggedIn) {
       return (
-        <div className="background" style={{ backgroundImage: `url(${Background})`}}>
+        <div className="background" style={{ backgroundImage: `url(${Background})` }}>
           <Router history={history}>
             <NavTabs loggedIn={this.state.loggedIn} />
             <Route exact path="/" render={() => (
@@ -86,13 +95,6 @@ export default class App extends Component<AppProps, AppState> {
                 <Home />
               </div>
             )} />
-            <Route exact path="/Login" render={() => (
-              <Login
-                signIn={this.signIn}
-                loggedIn={this.state.loggedIn}
-              />)}
-            />
-            <Route exact path="/Signup" component={Signup} />
             <Route exact path="/Cholesterol" render={() => (
               <Cholesterol
                 user={this.state.user}

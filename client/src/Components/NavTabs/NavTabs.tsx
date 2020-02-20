@@ -55,6 +55,12 @@ const theme = createMuiTheme({
       h5: {
         color: "white"
       }
+    },
+    MuiListItemText: {
+      primary: {
+        color: "black",
+        paddingRight: "100px"
+      }
     }
   }
 });
@@ -165,8 +171,8 @@ export default function TemporaryDrawer(props: any) {
                 Healthy Life Style
           </Typography>
             </Link>
-            <div>
-              <Button onClick={props.logout} style={{ color: "white" }}>
+            <div style={{marginLeft: "auto" }}>
+              <Button onClick={props.logout} style={{ color: "white"}}>
                 Logout
             </Button>
             </div>

@@ -54,6 +54,12 @@ var theme = createMuiTheme({
             h5: {
                 color: "white"
             }
+        },
+        MuiListItemText: {
+            primary: {
+                color: "black",
+                paddingRight: "100px"
+            }
         }
     }
 });
@@ -110,7 +116,7 @@ export default function TemporaryDrawer(props) {
                         React.createElement(MenuIcon, null)),
                     React.createElement(Link, { to: "/Home", style: { textDecoration: "none" } },
                         React.createElement(Typography, { variant: "h5", noWrap: true }, "Healthy Life Style")),
-                    React.createElement("div", null,
+                    React.createElement("div", { style: { marginLeft: "auto" } },
                         React.createElement(Button, { onClick: props.logout, style: { color: "white" } }, "Logout")))),
             React.createElement(Drawer, { open: state.left, onClose: toggleDrawer('left', false) }, sideList('left')))));
 }

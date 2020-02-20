@@ -6,7 +6,8 @@ interface CholesterolProps{
     user: {
         username?: string;
         email?: string;
-      }
+        id?: string;
+      };
 }
 
 interface CholesterolState{
