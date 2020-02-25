@@ -24,6 +24,20 @@ var App = /** @class */ (function (_super) {
             _this.setState({ user: user, loggedIn: true });
             history.push("/");
         };
+        _this.checkUserStatus = function () {
+            fetch("/api/user/sessionExpired")
+                .then(function (resp) {
+                if (!resp.ok) {
+                    throw new Error('checking if user is still logged in failed');
+                }
+                return resp.json();
+            })
+                .then(function (data) {
+                if (data) {
+                    _this.setState({ user: data, loggedIn: true });
+                }
+            });
+        };
         _this.logout = function () {
             fetch("/api/user/logout").
                 then(function (resp) {
@@ -36,8 +50,9 @@ var App = /** @class */ (function (_super) {
         return _this;
     }
     App.prototype.componentDidMount = function () {
+        this.checkUserStatus();
     };
-    // Make sure we un-register Firebase observers when the component unmounts.
+    // 
     App.prototype.componentWillUnmount = function () {
     };
     App.prototype.render = function () {

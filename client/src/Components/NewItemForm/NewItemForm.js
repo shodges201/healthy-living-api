@@ -107,7 +107,7 @@ var NewItemForm = /** @class */ (function (_super) {
             React.createElement("div", { className: "container" },
                 React.createElement("div", { className: 'root' },
                     React.createElement(DateSelector, { handleChange: this.handleDate, selectedDate: this.state.date.toDateString() }),
-                    React.createElement(TextInput, { label: "" + this.props.caption, value: this.state.level.toString(), handleChange: this.handleLevel }),
+                    React.createElement(TextInput, { label: "" + this.props.label, value: this.state.level.toString(), handleChange: this.handleLevel }),
                     React.createElement(CompleteButton, { handleForm: this.handleClick })))));
     };
     return NewItemForm;

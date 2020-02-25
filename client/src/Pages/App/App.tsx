@@ -30,9 +30,10 @@ export default class App extends Component<AppProps, AppState> {
   };
 
   componentDidMount() {
+    this.checkUserStatus();
   }
 
-  // Make sure we un-register Firebase observers when the component unmounts.
+  // 
   componentWillUnmount() {
   }
 
@@ -43,14 +44,29 @@ export default class App extends Component<AppProps, AppState> {
     history.push("/");
   }
 
+  checkUserStatus = () => {
+    fetch(`/api/user/sessionExpired`)
+      .then((resp) => {
+        if (!resp.ok) {
+          throw new Error('checking if user is still logged in failed');
+        }
+        return resp.json()
+      })
+      .then(data => {
+        if(data){
+          this.setState({user: data, loggedIn: true})
+        }
+      })
+  }
+
   logout = () => {
     fetch("/api/user/logout").
-    then((resp) => {
-      if (!resp.ok) {
-        throw new Error('Logout attempt was not ok');
-      }
-      this.setState({loggedIn: false, user: {}})
-    })
+      then((resp) => {
+        if (!resp.ok) {
+          throw new Error('Logout attempt was not ok');
+        }
+        this.setState({ loggedIn: false, user: {} })
+      })
   }
 
   render() {

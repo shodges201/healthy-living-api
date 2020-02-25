@@ -3,55 +3,86 @@ import FusionCharts from "fusioncharts";
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import NewItemForm from '../../Components/NewItemForm/NewItemForm'
+//import NewItemForm from '../../Components/NewItemForm/NewItemForm'
 import { Container } from '@material-ui/core';
 import "./Graph.css";
+import DialogOpener from "../DialogOpener/DialogOpener"
 
-interface GraphProps{
+interface GraphProps {
   url?: string;
   caption?: string;
   graphType?: string;
-  yAxisLabel?: string;
-  suffix?: string;
+  yAxisLabel: string;
+  suffix: string;
   user: {
     username?: string;
     email?: string;
     id?: string;
+  }
+}
+
+interface GraphState {
+  type: string; // The chart type
+  width: string; // Width of the chart
+  height: string; // Height of the chart
+  dataFormat: 'json';
+  dataSource: {
+    "chart": {
+      "caption"?: string;
+      "xAxisName": "Date";
+      "yAxisName": string;
+      "numberSuffix": string;
+      setadaptiveymin: "1";
+      "theme": "fusion";
+    },
+    "data": object[];
   };
 }
 
-interface GraphState{
-  dataSource: object;
-  chartConfigs: object;
-}
-
-interface dataFormat{
-  label: string; 
+interface dataFormat {
+  label: string;
   value: Number;
 }
 
-interface dbResult{
-  userID: any; 
-  level: Number; 
+interface dbResult {
+  userID: any;
+  level: Number;
   date: Date;
 }
 
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
-class Graph extends Component <GraphProps, GraphState>{
-    state = {
-      dataSource: {},
-      chartConfigs: {}
-    }
+class Graph extends Component<GraphProps, GraphState>{
+  constructor(props: GraphProps) {
+    super(props);
+    this.state = {
+      type: 'line',// The chart type
+      width: '100%', // Width of the chart
+      height: '600', // Height of the chart
+      dataFormat: 'json',
+      dataSource: {
+        "chart": {
+          "caption": props.caption,
+          "xAxisName": "Date",
+          "yAxisName": props.yAxisLabel,
+          "numberSuffix": props.suffix,
+          setadaptiveymin: "1",
+          "theme": "fusion"
+        },
+        "data": []
+      }
+    };;
+  }
 
 
   getAllData = (cb: Function) => {
-    fetch(`${this.props.url}/getAll`, {
-      method: 'post',
+    console.log(`${this.props.url}/getAllUser`);
+    fetch(`${this.props.url}/getAllUser`, {
+      method: 'GET',
+      mode: "cors",
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ userID: this.props.user.username })
+      }
     }).then(data => data.json()).then((data: dbResult[]) => {
       console.log('fetch resp');
       console.log(data);
@@ -64,36 +95,24 @@ class Graph extends Component <GraphProps, GraphState>{
   }
 
   addNewData = (date: Date, amount: Number, cb: Function) => {
+    console.log(date);
+    console.log(amount);
+    console.log(`${this.props.url}/new`);
     fetch(`${this.props.url}/new`, {
-      method: 'post',
+      method: 'POST',
+      mode: "cors",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ date: date, amount: amount, userID: this.props.user.username})
+      body: JSON.stringify({ date: date, amount: amount })
     }).then(data => data.json()).then((data) => {
-      cb();
       this.getAllData((entries: any) => {
         console.log(entries);
-        console.log({ ...this.state.chartConfigs, ...this.state.dataSource, data: entries });
-        this.setState({
-          chartConfigs: {
-            type: 'line',// The chart type
-            width: '100%', // Width of the chart
-            height: '600', // Height of the chart
-            dataFormat: 'json',
-            dataSource: {
-              "chart": {
-                "caption": this.props.caption,
-                "xAxisName": "Date",
-                "yAxisName": this.props.yAxisLabel,
-                "numberSuffix": this.props.suffix,
-                setadaptiveymin: "1",
-                "theme": "fusion"
-              },
-              "data": entries
-            }
-          }
-        })
+        let prevData = Object.assign({}, this.state.dataSource);
+        console.log(`prevData before: ${JSON.stringify(prevData)}`);
+        prevData.data = entries;
+        console.log(`prevData after: ${JSON.stringify(prevData)}`);
+        this.setState({dataSource: prevData});
       })
     })
   }
@@ -102,25 +121,9 @@ class Graph extends Component <GraphProps, GraphState>{
     this.getAllData((data: any) => {
       console.log('constructor data: ');
       console.log(data);
-      this.setState({
-        chartConfigs: {
-          type: 'line',// The chart type
-          width: '100%', // Width of the chart
-          height: '60%', // Height of the chart
-          dataFormat: 'json',
-          dataSource: {
-            "chart": {
-              "caption": this.props.caption,
-              "xAxisName": "Date",
-              "yAxisName": this.props.yAxisLabel,
-              "numberSuffix": this.props.suffix,
-              setadaptiveymin: "1",
-              "theme": "fusion"
-            },
-            "data": data
-          }
-        }
-      })
+      let prevData = Object.assign({}, this.state.dataSource);
+      prevData.data = data;
+      this.setState({ dataSource: prevData });
     })
   }
 
@@ -128,9 +131,11 @@ class Graph extends Component <GraphProps, GraphState>{
     return (
       <Container className="wrapper" maxWidth="xl">
         <ReactFC
-          {...this.state.chartConfigs}
+          {...this.state}
         />
-        <NewItemForm graphType={"line"} label={this.props.graphType} caption={this.props.caption} addNewData={this.addNewData}/>
+        <DialogOpener graphType={"line"} label={"label"} caption={this.props.caption} addNewData={this.addNewData}/>
+        {//<NewItemForm graphType={"line"} label={this.props.graphType} caption={this.props.caption} addNewData={this.addNewData} />
+        }
       </Container>);
   }
 }

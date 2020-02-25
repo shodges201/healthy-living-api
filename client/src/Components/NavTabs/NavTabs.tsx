@@ -44,18 +44,15 @@ import Button from '@material-ui/core/Button';
   },
 }) as any;*/
 
+const styles = {
+  whiteText:{
+    color: "white"
+  }
+}
+
 const theme = createMuiTheme({
   overrides: {
     // Style sheet name ⚛️
-    MuiTypography: {
-      root: {
-        // Name of the rule
-        color: 'white'
-      },
-      h5: {
-        color: "white"
-      }
-    },
     MuiListItemText: {
       primary: {
         color: "black",
@@ -119,10 +116,10 @@ export default function TemporaryDrawer(props: any) {
               >
                 <MenuIcon />
               </IconButton>
-              <Link to="/Home" style={{
+              <Link to="/" style={{
                 textDecoration: "none"
               }} >
-                <Typography variant="h5" noWrap>
+                <Typography variant="h5" style={styles.whiteText} noWrap>
                   Healthy Life Style
             </Typography>
               </Link>
@@ -131,12 +128,12 @@ export default function TemporaryDrawer(props: any) {
                   textDecoration: "none", flexDirection: "row",
                   display: "flex"
                 }} >
-                  <Typography variant="h5" noWrap>
+                  <Typography variant="h5" style={styles.whiteText} noWrap>
                     Login
             </Typography>
                 </Link>
                 <Link to="/Signup" style={{ marginLeft: "30px", textDecoration: "none", display: "flex", flexDirection: "row" }}>
-                  <Typography variant="h5" noWrap>
+                  <Typography variant="h5" style={styles.whiteText} noWrap>
                     Signup
                 </Typography>
                 </Link>
@@ -166,8 +163,8 @@ export default function TemporaryDrawer(props: any) {
             >
               <MenuIcon />
             </IconButton>
-            <Link to="/Home" style={{ textDecoration: "none" }}>
-              <Typography variant="h5" noWrap>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Typography variant="h5" style={styles.whiteText} noWrap>
                 Healthy Life Style
           </Typography>
             </Link>

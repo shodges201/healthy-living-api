@@ -33,6 +33,7 @@ class Login extends React.Component<LoginProps, LoginState>{
         console.log(body);
         fetch("/api/user/login", {
           method: "POST",
+          mode: "cors",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
         }).then((resp) => {

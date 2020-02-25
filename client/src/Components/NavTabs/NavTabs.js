@@ -43,18 +43,14 @@ import Button from '@material-ui/core/Button';
     direction: "ltr"
   },
 }) as any;*/
+var styles = {
+    whiteText: {
+        color: "white"
+    }
+};
 var theme = createMuiTheme({
     overrides: {
         // Style sheet name ⚛️
-        MuiTypography: {
-            root: {
-                // Name of the rule
-                color: 'white'
-            },
-            h5: {
-                color: "white"
-            }
-        },
         MuiListItemText: {
             primary: {
                 color: "black",
@@ -93,18 +89,18 @@ export default function TemporaryDrawer(props) {
                     React.createElement(Toolbar, null,
                         React.createElement(IconButton, { color: "inherit", "aria-label": "open drawer", onClick: toggleDrawer('left', true), edge: "start" },
                             React.createElement(MenuIcon, null)),
-                        React.createElement(Link, { to: "/Home", style: {
+                        React.createElement(Link, { to: "/", style: {
                                 textDecoration: "none"
                             } },
-                            React.createElement(Typography, { variant: "h5", noWrap: true }, "Healthy Life Style")),
+                            React.createElement(Typography, { variant: "h5", style: styles.whiteText, noWrap: true }, "Healthy Life Style")),
                         React.createElement("div", { style: { marginLeft: "auto", display: "flex", flexDirection: "row" } },
                             React.createElement(Link, { to: "/Login", style: {
                                     textDecoration: "none", flexDirection: "row",
                                     display: "flex"
                                 } },
-                                React.createElement(Typography, { variant: "h5", noWrap: true }, "Login")),
+                                React.createElement(Typography, { variant: "h5", style: styles.whiteText, noWrap: true }, "Login")),
                             React.createElement(Link, { to: "/Signup", style: { marginLeft: "30px", textDecoration: "none", display: "flex", flexDirection: "row" } },
-                                React.createElement(Typography, { variant: "h5", noWrap: true }, "Signup"))))),
+                                React.createElement(Typography, { variant: "h5", style: styles.whiteText, noWrap: true }, "Signup"))))),
                 React.createElement(Drawer, { open: state.left, onClose: toggleDrawer('left', false) }, sideList('left')))));
     }
     return (React.createElement(MuiThemeProvider, { theme: theme },
@@ -114,8 +110,8 @@ export default function TemporaryDrawer(props) {
                 React.createElement(Toolbar, null,
                     React.createElement(IconButton, { color: "inherit", "aria-label": "open drawer", onClick: toggleDrawer('left', true), edge: "start" },
                         React.createElement(MenuIcon, null)),
-                    React.createElement(Link, { to: "/Home", style: { textDecoration: "none" } },
-                        React.createElement(Typography, { variant: "h5", noWrap: true }, "Healthy Life Style")),
+                    React.createElement(Link, { to: "/", style: { textDecoration: "none" } },
+                        React.createElement(Typography, { variant: "h5", style: styles.whiteText, noWrap: true }, "Healthy Life Style")),
                     React.createElement("div", { style: { marginLeft: "auto" } },
                         React.createElement(Button, { onClick: props.logout, style: { color: "white" } }, "Logout")))),
             React.createElement(Drawer, { open: state.left, onClose: toggleDrawer('left', false) }, sideList('left')))));

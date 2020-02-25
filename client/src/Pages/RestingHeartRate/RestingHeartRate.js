@@ -7,13 +7,16 @@ var RestingHeartRate = /** @class */ (function (_super) {
     function RestingHeartRate() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.state = {};
+        _this.addNewData = function (date, level) {
+            console.log(date, level);
+        };
         return _this;
     }
     RestingHeartRate.prototype.componentDidMount = function () {
     };
     RestingHeartRate.prototype.render = function () {
         return (React.createElement(React.Fragment, null,
-            React.createElement(Graph, { graphType: "restingHeartRate", caption: "BPM", yAxisLabel: "Resting Heart Rate", suffix: "BPM", url: "api/heartrate", user: this.props.user })));
+            React.createElement(Graph, { graphType: "restingHeartRate", caption: "BPM", yAxisLabel: "Resting Heart Rate", suffix: "BPM", url: "/api/heartrate", user: this.props.user })));
     };
     return RestingHeartRate;
 }(Component));

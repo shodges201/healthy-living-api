@@ -20,10 +20,14 @@ class RestingHeartRate extends Component<RestingHeartRateProps, RestingHeartRate
     componentDidMount() {
     }
 
+    addNewData = (date: Date, level: Number) => {
+        console.log(date, level);
+    }
+
     render() {
         return (
             <>
-                <Graph graphType="restingHeartRate" caption="BPM" yAxisLabel="Resting Heart Rate" suffix="BPM" url="api/heartrate" user={this.props.user}/>
+                <Graph graphType="restingHeartRate" caption="BPM" yAxisLabel="Resting Heart Rate" suffix="BPM" url="/api/heartrate" user={this.props.user}/>
             </>
         );
     }

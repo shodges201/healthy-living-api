@@ -26,6 +26,7 @@ var Login = /** @class */ (function (_super) {
             console.log(body);
             fetch("/api/user/login", {
                 method: "POST",
+                mode: "cors",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             }).then(function (resp) {

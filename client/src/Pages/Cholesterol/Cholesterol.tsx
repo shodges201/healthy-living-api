@@ -20,10 +20,14 @@ class Cholesterol extends Component<CholesterolProps, CholesterolState> {
     componentDidMount() {
     }
 
+    addNewData = (date: Date, level: Number) => {
+        console.log(date, level);
+    }
+
     render() {
         return (
             <>
-                <Graph graphType="cholesterol" caption="Cholesterol Level" yAxisLabel="Total Cholesterol Level" suffix="mg/dl" url="api/cholesterol" user={this.props.user}/>
+                <Graph graphType="cholesterol" caption="Cholesterol Level" yAxisLabel="Total Cholesterol Level" suffix="mg/dl" url="/api/cholesterol" user={this.props.user}/>
             </>
         );
     }
