@@ -1,12 +1,15 @@
 const db = require("../../../models/index");
 const router = require("express").Router();
 const {body, validationResult} = require('express-validator');
+const mongoose = require("mongoose");
 
 // route /api/cholesterol/getAll
 router.get("/getAllUser", (req, res) => {
+    console.log(req.session.user);
+    console.log("getAllUser");
     db.Cholesterol.find({
-        userID: req.session.user.id
-    }).then((err, cholesterolData) => {
+        userID: mongoose.Types.ObjectId(`${req.session.user.id}`)
+    }).then((cholesterolData, err) => {
         if(err){
             return res.status(422).json(err);
         }
@@ -15,13 +18,20 @@ router.get("/getAllUser", (req, res) => {
 })
 
 router.post('/new',[
-    body('level').isInt({min: 10})
+    body('amount').isInt({min: 10})
 ] ,(req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+    console.log("creating new cholesterol entry");
     db.Cholesterol.create({
-        userID: req.session.user.id,
-        level: req.body.level
+        userID: mongoose.Types.ObjectId(`${req.session.user.id}`),
+        level: req.body.amount,
+        date: req.body.date
     }, (err, cholesterolEntry) => {
         if(err){
+            console.log(err);
             return res.status(422).json(err);
         }
         console.log(cholesterolEntry);

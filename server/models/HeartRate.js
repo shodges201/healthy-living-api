@@ -6,7 +6,7 @@ const heartRateSchema = new Schema({
         type: mongoose.Types.ObjectId,
         required: true
     },
-    rate: {
+    level: {
         type: Number,
         required: true
     },

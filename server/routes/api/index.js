@@ -1,13 +1,13 @@
 const path = require("path");
 const router = require("express").Router();
-const apiRoutes = require("./cholesterol/cholesterol");
+const cholesterolRoutes = require("./cholesterol/cholesterol");
 const heartRate = require("./heartRate/heartRate");
 const user = require("./user/user");
 const LDL = require("./LDL/LDL");
 const HDL = require("./HDL/HDL");
 
 // API Routes
-router.use("/cholesterol", apiRoutes);
+router.use("/cholesterol", cholesterolRoutes);
 router.use("/heartrate", heartRate);
 router.use("/user", user);
 router.use("/LDL", LDL);

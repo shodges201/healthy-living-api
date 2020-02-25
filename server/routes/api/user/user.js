@@ -90,6 +90,16 @@ router.get('/logout',(req,res) => {
     });
 });
 
+router.get('/sessionExpired', (req, res) => {
+    if(req.session.user){
+        return res.status(200).json({
+            username: req.session.user.username,
+            email: req.session.user.email
+        });
+    }   
+    return res.status(200).send(null);
+})
+
 function hashPassword(password) {
     var salt = crypto.randomBytes(128).toString('base64');
     var iterations = 10000;
