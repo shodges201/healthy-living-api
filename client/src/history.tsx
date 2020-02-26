@@ -1,4 +1,3 @@
 // src/history.js
 import { createBrowserHistory } from 'history';
-
-export default createBrowserHistory() as any;
+export default createBrowserHistory();

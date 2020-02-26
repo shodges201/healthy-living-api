@@ -11,38 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-
-/*const useStyles = () => createStyles({
-  list: {
-    width: 250,
-    padding: 0
-  },
-  fullList: {
-    width: 'auto',
-  },
-  listItem: {
-    borderTop: '1px solid lightGrey',
-  },
-  listItemBottom: {
-    borderTop: '1px solid lightGrey',
-    borderBottom: '1px solid lightGrey',
-  },
-  linkText: {
-    color: 'black',
-    textDecoration: 'none'
-  },
-  headerText: {
-    color: 'white',
-    textDecoration: 'none'
-  },
-  headerLinks: {
-    marginLeft: 'auto',
-    display: "flex",
-    flexDirection: "row",
-    direction: "ltr"
-  },
-}) as any;*/
+//import Button from '@material-ui/core/Button';
 
 const styles = {
   whiteText:{
@@ -169,9 +138,11 @@ export default function TemporaryDrawer(props: any) {
           </Typography>
             </Link>
             <div style={{marginLeft: "auto" }}>
-              <Button onClick={props.logout} style={{ color: "white"}}>
-                Logout
-            </Button>
+              <a onClick={props.logout} style={{ color: "white"}}>
+              <Typography variant="h5" style={styles.whiteText} noWrap>
+                    Logout
+                </Typography>
+            </a>
             </div>
           </Toolbar>
         </AppBar>

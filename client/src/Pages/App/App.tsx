@@ -7,7 +7,7 @@ import RestingHeartRate from '../RestingHeartRate/RestingHeartRate.js';
 import Login from "../Login/Login.js";
 import Home from '../Home/Home';
 import Signup from "../Signup/Signup";
-import history from '../../history';
+import history from "../../history.js";
 
 interface AppProps {
 }
@@ -50,10 +50,10 @@ export default class App extends Component<AppProps, AppState> {
         if (!resp.ok) {
           throw new Error('checking if user is still logged in failed');
         }
-        return resp.json()
+        return resp.json();
       })
       .then(data => {
-        if(data){
+        if(data.loggedIn){
           this.setState({user: data, loggedIn: true})
         }
       })

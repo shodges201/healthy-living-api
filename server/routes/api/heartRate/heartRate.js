@@ -1,38 +1,50 @@
 const db = require("../../../models/index");
 const router = require("express").Router();
 const {body, validationResult} = require('express-validator');
+const mongoose = require("mongoose");
 
-router.get("/", (req, res) => {
-    console.log("/heartrate");
-    res.send("heartrate");
-})
-
-// route /api/heartrate/getAll
+// route /api/heartrate/getAllUser
 router.get("/getAllUser", (req, res) => {
-    db.HeartRate.find({
-        userID: req.session.user.id
-    }).then((err, heartRateInfo) => {
+    console.log(req.session.user);
+    console.log("getAllUser");
+    db.HeartRate.count({ userID: mongoose.Types.ObjectId(`${req.session.user.id}`)}, (err, count) => {
         if(err){
-            return res.status(422).json(err);
+            throw err;
         }
-        return res.status(200).json(heartRateInfo);
+        count > 10 ? 10 : count;
+        const skip = count > 10 ? count - 10 : 0;
+        db.HeartRate
+            .find({ userID: mongoose.Types.ObjectId(`${req.session.user.id}`) })
+            .sort({ date: 1 }).skip(skip).limit(count)
+            .then((heartRateData, err) => {
+                if (err) {
+                    return res.status(422).json(err);
+                }
+                return res.status(200).json(heartRateData);
+            })
     })
 })
 
-router.post('/new',[
-    body('rate').isInt({min: 10})
-] ,(req, res) => {
-    console.log("here");
+router.post('/new', [
+    body('amount').isInt({ min: 10 })
+], (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+    console.log("creating new heartRate entry");
     db.HeartRate.create({
-        userID: req.session.user.id,
-        rate: req.body.rate
+        userID: mongoose.Types.ObjectId(`${req.session.user.id}`),
+        level: req.body.amount,
+        date: req.body.date
     }, (err, heartRateEntry) => {
-        if(err){
+        if (err) {
+            console.log(err);
             return res.status(422).json(err);
         }
         console.log(heartRateEntry);
         return res.status(200).json({
-            rate: heartRateEntry.rate
+            level: heartRateEntry.level
         });
     })
 })

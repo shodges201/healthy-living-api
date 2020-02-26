@@ -119,7 +119,7 @@ class NewItemForm extends Component<NewItemFormProps, NewItemFormState> {
             <ThemeProvider theme={theme}>
                 <div className="container">
                     <div className='root'>
-                        <DateSelector handleChange={this.handleDate} selectedDate={this.state.date.toDateString()} />
+                        <DateSelector handleChange={this.handleDate} selectedDate={this.state.date} />
                         <TextInput label={`${this.props.label}`} value={this.state.level.toString()} handleChange={this.handleLevel} />
                         <CompleteButton handleForm={this.handleClick} />
                     </div>

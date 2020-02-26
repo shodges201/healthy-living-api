@@ -93,11 +93,12 @@ router.get('/logout',(req,res) => {
 router.get('/sessionExpired', (req, res) => {
     if(req.session.user){
         return res.status(200).json({
+            loggedIn: true,
             username: req.session.user.username,
             email: req.session.user.email
         });
     }   
-    return res.status(200).send(null);
+    return res.status(200).send({loggedIn: false});
 })
 
 function hashPassword(password) {

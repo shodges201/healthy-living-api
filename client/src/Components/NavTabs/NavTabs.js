@@ -12,37 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-/*const useStyles = () => createStyles({
-  list: {
-    width: 250,
-    padding: 0
-  },
-  fullList: {
-    width: 'auto',
-  },
-  listItem: {
-    borderTop: '1px solid lightGrey',
-  },
-  listItemBottom: {
-    borderTop: '1px solid lightGrey',
-    borderBottom: '1px solid lightGrey',
-  },
-  linkText: {
-    color: 'black',
-    textDecoration: 'none'
-  },
-  headerText: {
-    color: 'white',
-    textDecoration: 'none'
-  },
-  headerLinks: {
-    marginLeft: 'auto',
-    display: "flex",
-    flexDirection: "row",
-    direction: "ltr"
-  },
-}) as any;*/
+//import Button from '@material-ui/core/Button';
 var styles = {
     whiteText: {
         color: "white"
@@ -113,7 +83,8 @@ export default function TemporaryDrawer(props) {
                     React.createElement(Link, { to: "/", style: { textDecoration: "none" } },
                         React.createElement(Typography, { variant: "h5", style: styles.whiteText, noWrap: true }, "Healthy Life Style")),
                     React.createElement("div", { style: { marginLeft: "auto" } },
-                        React.createElement(Button, { onClick: props.logout, style: { color: "white" } }, "Logout")))),
+                        React.createElement("a", { onClick: props.logout, style: { color: "white" } },
+                            React.createElement(Typography, { variant: "h5", style: styles.whiteText, noWrap: true }, "Logout"))))),
             React.createElement(Drawer, { open: state.left, onClose: toggleDrawer('left', false) }, sideList('left')))));
 }
 //# sourceMappingURL=NavTabs.js.map

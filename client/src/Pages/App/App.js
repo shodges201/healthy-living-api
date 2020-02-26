@@ -8,7 +8,7 @@ import RestingHeartRate from '../RestingHeartRate/RestingHeartRate.js';
 import Login from "../Login/Login.js";
 import Home from '../Home/Home';
 import Signup from "../Signup/Signup";
-import history from '../../history';
+import history from "../../history.js";
 var Background = "/images/darkBackground.jpg";
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
@@ -33,7 +33,7 @@ var App = /** @class */ (function (_super) {
                 return resp.json();
             })
                 .then(function (data) {
-                if (data) {
+                if (data.loggedIn) {
                     _this.setState({ user: data, loggedIn: true });
                 }
             });

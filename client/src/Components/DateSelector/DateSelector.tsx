@@ -6,8 +6,21 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import './DateSelector.css';
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 
-export default function MaterialUIPickers(props: {selectedDate?: string | null, handleChange: Function}) {
+export default function DateSelector(props: {selectedDate?: Date, handleChange: Function, underlineColor: string}) {
+
+  const theme = createMuiTheme({
+    overrides: {
+      MuiInput: {
+        underline: {
+          "&:after": {
+            borderBottom: `2px solid ${props.underlineColor}`
+          }
+        }
+      }
+    }
+  })
 
   const handleDateChange = (date: Date | null) => {
     props.handleChange(date);
@@ -15,6 +28,7 @@ export default function MaterialUIPickers(props: {selectedDate?: string | null, 
 
   return (
     
+    <MuiThemeProvider theme={theme}>
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
         margin="normal"
@@ -29,5 +43,11 @@ export default function MaterialUIPickers(props: {selectedDate?: string | null, 
         className="date-selector"
       />
     </MuiPickersUtilsProvider >
+    </MuiThemeProvider>
   );
+}
+
+DateSelector.defaultProps = {
+  selectedDate: new Date(Date.now()),
+  underlineColor: "grey"
 }

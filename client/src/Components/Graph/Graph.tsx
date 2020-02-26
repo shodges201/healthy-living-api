@@ -113,6 +113,7 @@ class Graph extends Component<GraphProps, GraphState>{
         prevData.data = entries;
         console.log(`prevData after: ${JSON.stringify(prevData)}`);
         this.setState({dataSource: prevData});
+        cb();
       })
     })
   }
@@ -133,7 +134,11 @@ class Graph extends Component<GraphProps, GraphState>{
         <ReactFC
           {...this.state}
         />
-        <DialogOpener graphType={"line"} label={"label"} caption={this.props.caption} addNewData={this.addNewData}/>
+        <DialogOpener 
+        graphType={"line"} 
+        label={"label"} 
+        caption={this.props.caption} 
+        submitNewEntry={this.addNewData}/>
         {//<NewItemForm graphType={"line"} label={this.props.graphType} caption={this.props.caption} addNewData={this.addNewData} />
         }
       </Container>);

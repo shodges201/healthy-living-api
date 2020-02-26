@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import Graph from '../../Components/Graph/Graph.js';
 import './Cholesterol.css';
 
-interface CholesterolProps{
+interface CholesterolProps {
     user: {
         username?: string;
         email?: string;
         id?: string;
-      };
+    };
 }
 
-interface CholesterolState{
+interface CholesterolState {
 
 }
 
@@ -27,7 +27,14 @@ class Cholesterol extends Component<CholesterolProps, CholesterolState> {
     render() {
         return (
             <>
-                <Graph graphType="cholesterol" caption="Cholesterol Level" yAxisLabel="Total Cholesterol Level" suffix="mg/dl" url="/api/cholesterol" user={this.props.user}/>
+                <Graph
+                    graphType="cholesterol"
+                    caption="Cholesterol Level"
+                    yAxisLabel="Total Cholesterol Level"
+                    suffix="mg/dl"
+                    url="/api/cholesterol"
+                    user={this.props.user}
+                />
             </>
         );
     }

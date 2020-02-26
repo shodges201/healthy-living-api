@@ -1,0 +1,23 @@
+{
+  "name": "healthy-living",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd ./server && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shodges201/healthy-living.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shodges201/healthy-living/issues"
+  },
+  "homepage": "https://github.com/shodges201/healthy-living#readme"
+}
