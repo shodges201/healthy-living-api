@@ -53,7 +53,7 @@ var Signup = /** @class */ (function (_super) {
                 React.createElement(TextInput, { label: "email", type: "email", value: this.state.email, handleChange: this.handleChange }),
                 React.createElement(TextInput, { label: "username", value: this.state.username, handleChange: this.handleChange }),
                 React.createElement(TextInput, { label: "password", type: "password", value: this.state.password, handleChange: this.handleChange }),
-                React.createElement(TextInput, { label: "validate", type: "password", value: this.state.validate, handleChange: this.handleChange }),
+                React.createElement(TextInput, { label: "password", type: "password", value: this.state.validate, handleChange: this.handleChange }),
                 React.createElement(CompleteButton, { text: "Sign Up", handleForm: this.formSubmit }))));
     };
     return Signup;

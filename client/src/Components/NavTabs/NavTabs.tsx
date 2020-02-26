@@ -33,7 +33,7 @@ const theme = createMuiTheme({
 
 export default function TemporaryDrawer(props: any) {
   console.log(props.loggedIn);
-  const menuItems = props.loggedIn ? ['Home', 'Cholesterol', 'Resting Heart Rate'] : ['Home', 'Log In'];
+  const menuItems = props.loggedIn ? ['Home', 'Cholesterol', 'Resting Heart Rate'] : ['Home', 'Log In', 'Signup'];
   console.log(menuItems);
   const [state, setState] = React.useState({
     top: false,

@@ -50,7 +50,7 @@ class Signup extends Component {
                     <TextInput label="email" type="email" value={this.state.email} handleChange={this.handleChange} />
                     <TextInput label="username" value={this.state.username} handleChange={this.handleChange} />
                     <TextInput label="password" type="password" value={this.state.password} handleChange={this.handleChange} />
-                    <TextInput label="validate" type="password" value={this.state.validate} handleChange={this.handleChange} />
+                    <TextInput label="password" type="password" value={this.state.validate} handleChange={this.handleChange} />
                     <CompleteButton text="Sign Up" handleForm={this.formSubmit} />
                 </form>
             </div>
