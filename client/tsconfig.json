@@ -8,7 +8,7 @@
       "dom"
     ],
     "sourceMap": true,
-    "allowJs": false,
+    "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": "src",
@@ -26,7 +26,8 @@
     "strict": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false
+    "noEmit": true,
+    "outDir": "build"
   },
   "exclude": [
     "node_modules",
