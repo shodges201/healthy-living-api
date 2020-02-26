@@ -1,6 +1,6 @@
 # Healthy Living
 
-Deployed project coming soon.
+Deployed project can be found at: https://healthily-living.herokuapp.com/
 
 #### -- Project Status: Active
 
