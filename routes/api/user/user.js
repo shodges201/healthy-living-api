@@ -101,6 +101,12 @@ router.get('/sessionExpired', (req, res) => {
     return res.status(200).send({loggedIn: false});
 })
 
+// If no API routes are hit, send the React app
+router.use(function(req, res) {
+    console.log('/api');
+    res.sendFile(path.join(__dirname, "../../client/build/index.html"));
+  });
+  
 function hashPassword(password) {
     var salt = crypto.randomBytes(128).toString('base64');
     var iterations = 10000;
