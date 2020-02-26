@@ -35,7 +35,6 @@ router.post('/new',[
 router.use(function(req, res) {
     console.log('/api');
     res.sendFile(path.join(__dirname, "../../client/build/index.html"));
-  });
-s  
+  });  
 
 module.exports = router;
