@@ -28,8 +28,7 @@ var App = /** @class */ (function (_super) {
             fetch("/api/user/sessionExpired")
                 .then(function (resp) {
                 if (!resp.ok) {
-                    console.log("user not signed in");
-                    return;
+                    throw new Error('checking if user is still logged in failed');
                 }
                 return resp.json();
             })

@@ -12,9 +12,8 @@ class Signup extends Component {
         validPasswords: false
     };
 
-    handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        let id = event.target.id.split("TextInput")[0];
-        this.setState({ [id]: event.target.value });
+    handleChange = (event: React.ChangeEvent<HTMLInputElement>, value: string) => {
+        this.setState({ [value]: event.target.value });
     }
 
     formSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -47,10 +46,10 @@ class Signup extends Component {
         return (
             <div className="container">
                 <form className="form" onSubmit={(event) => this.formSubmit(event)}>
-                    <TextInput label="email" type="email" value={this.state.email} handleChange={this.handleChange} />
-                    <TextInput label="username" value={this.state.username} handleChange={this.handleChange} />
-                    <TextInput label="password" type="password" value={this.state.password} handleChange={this.handleChange} />
-                    <TextInput label="password" type="password" value={this.state.validate} handleChange={this.handleChange} />
+                    <TextInput label="email" type="email" value={this.state.email} handleChange={(event: React.ChangeEvent<HTMLInputElement>)=> this.handleChange(event, "email")} />
+                    <TextInput label="username" value={this.state.username} handleChange={(event: React.ChangeEvent<HTMLInputElement>)=> this.handleChange(event, "username")} />
+                    <TextInput label="password" type="password" value={this.state.password} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, "password")} />
+                    <TextInput label="password" type="password" value={this.state.validate} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, "validate")} />
                     <CompleteButton text="Sign Up" handleForm={this.formSubmit} />
                 </form>
             </div>

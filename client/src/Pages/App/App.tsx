@@ -13,7 +13,7 @@ interface AppProps {
 }
 
 interface AppState {
-  loggedIn?: boolean;
+  loggedIn: boolean;
   user: {
     username?: string;
     email?: string;
@@ -48,7 +48,8 @@ export default class App extends Component<AppProps, AppState> {
     fetch(`/api/user/sessionExpired`)
       .then((resp) => {
         if (!resp.ok) {
-          throw new Error('checking if user is still logged in failed');
+          console.log("user not signed in");
+          return;
         }
         return resp.json();
       })

@@ -14,9 +14,11 @@ var Signup = /** @class */ (function (_super) {
             validate: "",
             validPasswords: false
         };
-        _this.handleChange = function (event, value) {
+        _this.handleChange = function (event) {
             var _a;
-            _this.setState((_a = {}, _a[value] = event.target.value, _a));
+            var id = event.target.id.split("TextInput")[0];
+            console.log(id);
+            _this.setState((_a = {}, _a[id] = event.target.value, _a));
         };
         _this.formSubmit = function (event) {
             console.log("submitted");
@@ -49,10 +51,10 @@ var Signup = /** @class */ (function (_super) {
         var _this = this;
         return (React.createElement("div", { className: "container" },
             React.createElement("form", { className: "form", onSubmit: function (event) { return _this.formSubmit(event); } },
-                React.createElement(TextInput, { label: "email", type: "email", value: this.state.email, handleChange: function (event) { return _this.handleChange(event, "email"); } }),
-                React.createElement(TextInput, { label: "username", value: this.state.username, handleChange: function (event) { return _this.handleChange(event, "username"); } }),
-                React.createElement(TextInput, { label: "password", type: "password", value: this.state.password, handleChange: function (event) { return _this.handleChange(event, "password"); } }),
-                React.createElement(TextInput, { label: "password", type: "password", value: this.state.validate, handleChange: function (event) { return _this.handleChange(event, "validate"); } }),
+                React.createElement(TextInput, { label: "email", type: "email", value: this.state.email, handleChange: this.handleChange }),
+                React.createElement(TextInput, { label: "username", value: this.state.username, handleChange: this.handleChange }),
+                React.createElement(TextInput, { label: "password", type: "password", value: this.state.password, handleChange: this.handleChange }),
+                React.createElement(TextInput, { label: "password", type: "password", value: this.state.validate, handleChange: this.handleChange }),
                 React.createElement(CompleteButton, { text: "Sign Up", handleForm: this.formSubmit }))));
     };
     return Signup;
