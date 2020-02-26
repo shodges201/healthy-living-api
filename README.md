@@ -7,8 +7,6 @@ Deployed project coming soon.
 ## Project Intro/Objective
 Healthy Living is a project intended to help users easily track their vital health indicators such as cholesterol, resting heart rate, etc.
 
-![GitHub Logo](client/public/sabotage.png)
-
 ### Technologies
 * HTML
 * CSS
