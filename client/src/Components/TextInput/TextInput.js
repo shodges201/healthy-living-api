@@ -39,6 +39,8 @@ function TextInput(props) {
                 return (React.createElement(TextField, { id: props.label + "TextInput", label: props.label, value: props.value, type: props.type, variant: "filled", style: props.style, onChange: function (event) { return props.handleChange(event); } }));
             case "outlined":
                 return (React.createElement(TextField, { id: props.label + "TextInput", label: props.label, value: props.value, type: props.type, variant: "outlined", onChange: function (event) { return props.handleChange(event); }, style: props.style }));
+            default:
+                return (React.createElement(TextField, { id: props.label + "TextInput", label: props.label, value: props.value, type: props.type, variant: "standard", style: props.style, onChange: function (event) { return props.handleChange(event); } }));
         }
     }
     return (React.createElement(MuiThemeProvider, { theme: theme }, variantTypingHack()));

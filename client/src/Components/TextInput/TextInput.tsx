@@ -4,7 +4,8 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 
 function TextInput(props: {
   id: string, label: string, value: string, type: string, class: string, variant: ("standard" | "outlined" | "filled"), textColor: string,
-  backgroundColor: string, borderColor: string, focusedBorderColor: string, handleChange: Function, style?: any}) {
+  backgroundColor: string, borderColor: string, focusedBorderColor: string, handleChange: Function, style?: any
+}) {
 
   const theme = createMuiTheme({
     overrides: {
@@ -45,7 +46,7 @@ function TextInput(props: {
           value={props.value}
           type={props.type}
           variant={"standard"}
-          style = {props.style}
+          style={props.style}
           onChange={(event) => props.handleChange(event)}
         />)
       case "filled":
@@ -55,20 +56,29 @@ function TextInput(props: {
           value={props.value}
           type={props.type}
           variant={"filled"}
-          style = {props.style}
+          style={props.style}
           onChange={(event) => props.handleChange(event)}
         />)
       case "outlined":
-        return(<TextField
+        return (<TextField
           id={`${props.label}TextInput`}
           label={props.label}
           value={props.value}
           type={props.type}
           variant={"outlined"}
           onChange={(event) => props.handleChange(event)}
-          style = {props.style}
+          style={props.style}
         />)
-
+      default:
+        return (<TextField
+          id={`${props.label}TextInput`}
+          label={props.label}
+          value={props.value}
+          type={props.type}
+          variant={"standard"}
+          style={props.style}
+          onChange={(event) => props.handleChange(event)}
+        />)
     }
   }
 
