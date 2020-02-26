@@ -104,7 +104,7 @@ router.get('/sessionExpired', (req, res) => {
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
     console.log('/api');
-    res.sendFile(path.join(__dirname, "client/build/index.html"));
+    res.sendFile(path.join(__dirname, "../../../client/build/index.html"));
   });
   
 function hashPassword(password) {
