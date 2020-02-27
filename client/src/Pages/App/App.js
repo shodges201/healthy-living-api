@@ -2,13 +2,14 @@ import { __extends } from "tslib";
 import React, { Component } from 'react';
 import './App.css';
 import NavTabs from '../../Components/NavTabs/NavTabs';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import Cholesterol from '../Cholesterol/Cholesterol.js';
 import RestingHeartRate from '../RestingHeartRate/RestingHeartRate.js';
 import Login from "../Login/Login.js";
 import Home from '../Home/Home';
 import Signup from "../Signup/Signup";
 import history from "../../history.js";
+import NoMatch from '../NoMatch/NoMatch';
 var Background = "/images/darkBackground.jpg";
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
@@ -62,23 +63,25 @@ var App = /** @class */ (function (_super) {
             return (React.createElement("div", { className: "background", style: { backgroundImage: "url(" + Background + ")" } },
                 React.createElement(Router, { history: history },
                     React.createElement(NavTabs, { loggedIn: this.state.loggedIn }),
-                    React.createElement(Route, { exact: true, path: "/", render: function () { return (React.createElement("div", { className: "Home" },
-                            React.createElement(Home, null))); } }),
-                    React.createElement(Route, { exact: true, path: "/Home", render: function () { return (React.createElement("div", { className: "Home" },
-                            React.createElement(Home, null))); } }),
-                    React.createElement(Route, { exact: true, path: "/Login", render: function () { return (React.createElement(Login, { signIn: _this.signIn, loggedIn: _this.state.loggedIn })); } }),
-                    React.createElement(Route, { exact: true, path: "/Signup", component: Signup }))));
+                    React.createElement(Switch, null,
+                        React.createElement(Route, { exact: true, path: "/", render: function () { return (React.createElement("div", { className: "Home" },
+                                React.createElement(Home, null))); } }),
+                        React.createElement(Route, { exact: true, path: "/Login", render: function () { return (React.createElement(Login, { signIn: _this.signIn, loggedIn: _this.state.loggedIn })); } }),
+                        React.createElement(Route, { exact: true, path: "/Signup", render: function () { return (React.createElement(Signup, { signIn: _this.signIn, loggedIn: _this.state.loggedIn })); } }),
+                        React.createElement(Route, { path: "*" },
+                            React.createElement(NoMatch, null))))));
         }
         else {
             return (React.createElement("div", { className: "background", style: { backgroundImage: "url(" + Background + ")" } },
                 React.createElement(Router, { history: history },
                     React.createElement(NavTabs, { logout: this.logout, loggedIn: this.state.loggedIn }),
-                    React.createElement(Route, { exact: true, path: "/", render: function () { return (React.createElement("div", { className: "Home" },
-                            React.createElement(Home, null))); } }),
-                    React.createElement(Route, { exact: true, path: "/Home", render: function () { return (React.createElement("div", { className: "Home" },
-                            React.createElement(Home, null))); } }),
-                    React.createElement(Route, { exact: true, path: "/Cholesterol", render: function () { return (React.createElement(Cholesterol, { user: _this.state.user })); } }),
-                    React.createElement(Route, { exact: true, path: "/RestingHeartRate", render: function () { return (React.createElement(RestingHeartRate, { user: _this.state.user })); } }))));
+                    React.createElement(Switch, null,
+                        React.createElement(Route, { exact: true, path: "/", render: function () { return (React.createElement("div", { className: "Home" },
+                                React.createElement(Home, null))); } }),
+                        React.createElement(Route, { exact: true, path: "/Cholesterol", render: function () { return (React.createElement(Cholesterol, { user: _this.state.user })); } }),
+                        React.createElement(Route, { exact: true, path: "/RestingHeartRate", render: function () { return (React.createElement(RestingHeartRate, { user: _this.state.user })); } }),
+                        React.createElement(Route, { path: "*" },
+                            React.createElement(NoMatch, null))))));
         }
     };
     return App;

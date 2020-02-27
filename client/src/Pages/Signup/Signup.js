@@ -40,6 +40,11 @@ var Signup = /** @class */ (function (_super) {
                     throw new Error('Login response was not ok');
                 }
                 return resp.json();
+            }).then(function (userData) {
+                console.log(userData);
+                _this.props.signIn(userData);
+            }).catch(function (error) {
+                console.log("Error:" + error);
             });
             return;
         };

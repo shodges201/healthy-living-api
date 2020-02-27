@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import NavTabs from '../../Components/NavTabs/NavTabs'
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import Cholesterol from '../Cholesterol/Cholesterol.js';
 import RestingHeartRate from '../RestingHeartRate/RestingHeartRate.js';
 import Login from "../Login/Login.js";
 import Home from '../Home/Home';
 import Signup from "../Signup/Signup";
 import history from "../../history.js";
+import NoMatch from '../NoMatch/NoMatch';
 
 interface AppProps {
 }
@@ -54,8 +55,8 @@ export default class App extends Component<AppProps, AppState> {
         return resp.json();
       })
       .then(data => {
-        if(data.loggedIn){
-          this.setState({user: data, loggedIn: true})
+        if (data.loggedIn) {
+          this.setState({ user: data, loggedIn: true })
         }
       })
   }
@@ -76,23 +77,28 @@ export default class App extends Component<AppProps, AppState> {
         <div className="background" style={{ backgroundImage: `url(${Background})` }}>
           <Router history={history}>
             <NavTabs loggedIn={this.state.loggedIn} />
-            <Route exact path="/" render={() => (
-              <div className="Home">
-                <Home />
-              </div>
-            )} />
-            <Route exact path="/Home" render={() => (
-              <div className="Home">
-                <Home />
-              </div>
-            )} />
-            <Route exact path="/Login" render={() => (
-              <Login
-                signIn={this.signIn}
-                loggedIn={this.state.loggedIn}
-              />)}
-            />
-            <Route exact path="/Signup" component={Signup} />
+            <Switch>
+              <Route exact path="/" render={() => (
+                <div className="Home">
+                  <Home />
+                </div>
+              )} />
+              <Route exact path="/Login" render={() => (
+                <Login
+                  signIn={this.signIn}
+                  loggedIn={this.state.loggedIn}
+                />)}
+              />
+              <Route exact path="/Signup" render={() => (
+                <Signup
+                  signIn={this.signIn}
+                  loggedIn={this.state.loggedIn}
+                />)}
+              />
+              <Route path="*">
+                <NoMatch />
+              </Route>
+            </Switch>
           </Router>
         </div>
       );
@@ -102,26 +108,26 @@ export default class App extends Component<AppProps, AppState> {
         <div className="background" style={{ backgroundImage: `url(${Background})` }}>
           <Router history={history}>
             <NavTabs logout={this.logout} loggedIn={this.state.loggedIn} />
-            <Route exact path="/" render={() => (
-              <div className="Home">
-                <Home />
-              </div>
-            )} />
-            <Route exact path="/Home" render={() => (
-              <div className="Home">
-                <Home />
-              </div>
-            )} />
-            <Route exact path="/Cholesterol" render={() => (
-              <Cholesterol
-                user={this.state.user}
-              />)}
-            />
-            <Route exact path="/RestingHeartRate" render={() => (
-              <RestingHeartRate
-                user={this.state.user}
-              />)}
-            />
+            <Switch>
+              <Route exact path="/" render={() => (
+                <div className="Home">
+                  <Home />
+                </div>
+              )} />
+              <Route exact path="/Cholesterol" render={() => (
+                <Cholesterol
+                  user={this.state.user}
+                />)}
+              />
+              <Route exact path="/RestingHeartRate" render={() => (
+                <RestingHeartRate
+                  user={this.state.user}
+                />)}
+              />
+              <Route path="*">
+                <NoMatch />
+              </Route>
+            </Switch>
           </Router>
         </div >);
     }
