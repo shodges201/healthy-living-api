@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(session({ secret: 'randomrandom', saveUninitialized: true, resave: true, store: new MongoStore({ mongooseConnection: connection }) }));
+app.use(session({ secret: process.env.SECRET, saveUninitialized: true, resave: true, store: new MongoStore({ mongooseConnection: connection }) }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 app.on('ready', function() { 
-  app.listen(9000, function(){ 
+  app.listen(PORT, function(){ 
       console.log(`server is running on port ${PORT}`); 
   }); 
 }); 
