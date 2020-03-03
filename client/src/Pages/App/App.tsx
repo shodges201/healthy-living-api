@@ -94,13 +94,13 @@ export default class App extends Component<AppProps, AppState> {
               />)}
             />
             <Route exact path="/Cholesterol" render={() => (
-              !this.state.loggedIn ? <Redirect to="/" /> :
+              !this.state.loggedIn ? <Redirect to="/Login" /> :
               <Cholesterol
                 user={this.state.user}
               />)}
             />
             <Route exact path="/RestingHeartRate" render={() => (
-              !this.state.loggedIn ? <Redirect to="/" /> :
+              !this.state.loggedIn ? <Redirect to="/Login" /> :
               <RestingHeartRate
                 user={this.state.user}
               />)}

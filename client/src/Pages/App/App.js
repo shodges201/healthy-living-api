@@ -66,9 +66,9 @@ var App = /** @class */ (function (_super) {
                             React.createElement(Login, { signIn: _this.signIn, loggedIn: _this.state.loggedIn })); } }),
                     React.createElement(Route, { exact: true, path: "/Signup", render: function () { return (_this.state.loggedIn ? React.createElement(Redirect, { to: "/" }) :
                             React.createElement(Signup, { signIn: _this.signIn, loggedIn: _this.state.loggedIn })); } }),
-                    React.createElement(Route, { exact: true, path: "/Cholesterol", render: function () { return (!_this.state.loggedIn ? React.createElement(Redirect, { to: "/" }) :
+                    React.createElement(Route, { exact: true, path: "/Cholesterol", render: function () { return (!_this.state.loggedIn ? React.createElement(Redirect, { to: "/Login" }) :
                             React.createElement(Cholesterol, { user: _this.state.user })); } }),
-                    React.createElement(Route, { exact: true, path: "/RestingHeartRate", render: function () { return (!_this.state.loggedIn ? React.createElement(Redirect, { to: "/" }) :
+                    React.createElement(Route, { exact: true, path: "/RestingHeartRate", render: function () { return (!_this.state.loggedIn ? React.createElement(Redirect, { to: "/Login" }) :
                             React.createElement(RestingHeartRate, { user: _this.state.user })); } }),
                     React.createElement(Route, { path: "*" },
                         React.createElement(NoMatch, null))))));

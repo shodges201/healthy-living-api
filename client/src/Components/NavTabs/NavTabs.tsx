@@ -93,7 +93,8 @@ export default function TemporaryDrawer(props: any) {
             </Typography>
               </Link>
               <div style={{marginLeft: "auto", display: "flex", flexDirection: "row"}}>
-                <Link to="/Login" className="signUpHeader" >
+                <Link to="/Login" className="signUpHeader"
+ >
                   <Typography variant="h5" style={styles.whiteText} noWrap>
                     Login
             </Typography>

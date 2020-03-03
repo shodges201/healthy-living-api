@@ -39,7 +39,6 @@
   ],
   "include": [
     "./src/Components/**/*.tsx",
-    "./src/Pages/**/*.tsx",
-    "./src/history.tsx"
+    "./src/Pages/**/*.tsx"
   ]
 }
