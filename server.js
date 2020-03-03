@@ -6,10 +6,12 @@ var mongoose = require("mongoose");
 const session = require('express-session');
 const cors = require("cors");
 const MongoStore = require("connect-mongo")(session);
+require('dotenv').config()
 
 
 const URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/healthyLiving';
 const PORT = process.env.PORT || 9000;
+const SECRET = process.env.SECRET;
 
 const app = express();
 mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -22,7 +24,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(session({ secret: process.env.SECRET, saveUninitialized: true, resave: true, store: new MongoStore({ mongooseConnection: connection }) }));
+app.use(session({ secret: SECRET, saveUninitialized: true, resave: true, store: new MongoStore({ mongooseConnection: connection }) }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());

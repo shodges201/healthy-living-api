@@ -11,7 +11,7 @@ function Graph(props) {
     var config = {
         type: 'line',
         width: '100%',
-        height: '600',
+        height: '60%',
         dataFormat: 'json',
         dataSource: {
             "chart": {

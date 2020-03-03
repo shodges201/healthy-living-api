@@ -33,6 +33,8 @@ interface GraphConfig {
   };
 }
 
+
+
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 function Graph(props: GraphProps) {
@@ -42,7 +44,7 @@ function Graph(props: GraphProps) {
   const config: GraphConfig = {
     type: 'line',// The chart type
     width: '100%', // Width of the chart
-    height: '600', // Height of the chart
+    height: '60%', // Height of the chart
     dataFormat: 'json',
     dataSource: {
       "chart": {
@@ -58,11 +60,12 @@ function Graph(props: GraphProps) {
   }
 
   return (
-    <div className="graphContainer">
+     <div className="graphContainer">
       <ReactFC
         {...config}
       />
-    </div>);
+     </div>
+    );
 }
 
 export default Graph;
