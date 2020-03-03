@@ -50,7 +50,7 @@ export default function TemporaryDrawer(props: any) {
     >
       <List style={{ paddingTop: '0px' }}>
         {menuItems.map((text, index) => (
-          <Link to={text.split(' ').join('')} key={text}>
+          <Link to={text === 'Home' ? "/" : text.split(' ').join('')} key={text}>
             <ListItem button>
               <ListItemText primary={text} />
             </ListItem>

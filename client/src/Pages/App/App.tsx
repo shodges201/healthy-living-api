@@ -46,12 +46,16 @@ export default class App extends Component<AppProps, AppState> {
     fetch(`/api/user/sessionExpired`)
       .then((resp) => {
         if (!resp.ok) {
-          console.log("user not signed in");
+          console.log("user error");
           return;
         }
         return resp.json();
       })
       .then(data => {
+        if(!data){
+          console.log("user not signed in");
+          return;
+        }
         if (data.loggedIn) {
           this.setState({ user: data, loggedIn: true })
         }

@@ -52,13 +52,17 @@ router.post("/login", (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
     }
-    db.User.find({
+    db.User.findOne({
         email: req.body.email
     }, (err, data) => {
         if(err){
             return res.status(422).json(err);
         }
-        const user = data[0];
+        const user = data;
+        console.log(`data: ${data}`);
+        console.log(`err: ${err}`);
+        console.log(`user: ${user}`);
+        console.log(`user pw salt: ${user.passwordSalt}`);
         const correctPassword = validPassword(req.body.password, user.passwordSalt, 10000, user.passwordHash);
         if(correctPassword){
             const userInfo = {

@@ -40,7 +40,7 @@ export default function TemporaryDrawer(props) {
         right: false,
     }), state = _a[0], setState = _a[1];
     var sideList = function (side) { return (React.createElement("div", { role: "presentation", onClick: toggleDrawer(side, false), onKeyDown: toggleDrawer(side, false) },
-        React.createElement(List, { style: { paddingTop: '0px' } }, menuItems.map(function (text, index) { return (React.createElement(Link, { to: text.split(' ').join(''), key: text },
+        React.createElement(List, { style: { paddingTop: '0px' } }, menuItems.map(function (text, index) { return (React.createElement(Link, { to: text === 'Home' ? "/" : text.split(' ').join(''), key: text },
             React.createElement(ListItem, { button: true },
                 React.createElement(ListItemText, { primary: text })))); })))); };
     var toggleDrawer = function (side, open) { return function (event) {

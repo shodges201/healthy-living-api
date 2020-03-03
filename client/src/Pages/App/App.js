@@ -26,12 +26,16 @@ var App = /** @class */ (function (_super) {
             fetch("/api/user/sessionExpired")
                 .then(function (resp) {
                 if (!resp.ok) {
-                    console.log("user not signed in");
+                    console.log("user error");
                     return;
                 }
                 return resp.json();
             })
                 .then(function (data) {
+                if (!data) {
+                    console.log("user not signed in");
+                    return;
+                }
                 if (data.loggedIn) {
                     _this.setState({ user: data, loggedIn: true });
                 }
