@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import NavTabs from '../../Components/NavTabs/NavTabs'
-import { Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Cholesterol from '../Cholesterol/Cholesterol.js';
 import RestingHeartRate from '../RestingHeartRate/RestingHeartRate.js';
 import Login from "../Login/Login.js";
 import Home from '../Home/Home';
 import Signup from "../Signup/Signup";
-import history from "../../history.js";
 import NoMatch from '../NoMatch/NoMatch';
 
 interface AppProps {
@@ -23,6 +22,7 @@ interface AppState {
 }
 
 export default class App extends Component<AppProps, AppState> {
+
   state = {
     loggedIn: false,
     user: {}
@@ -40,7 +40,6 @@ export default class App extends Component<AppProps, AppState> {
     console.log(user);
     console.log("logging in user");
     this.setState({ user: user, loggedIn: true });
-    history.push("/");
   }
 
   checkUserStatus = () => {
@@ -70,64 +69,47 @@ export default class App extends Component<AppProps, AppState> {
   }
 
   render() {
-    if (!this.state.loggedIn) {
-      return (
-        <div className="background">
-          <Router history={history}>
-            <NavTabs loggedIn={this.state.loggedIn} />
-            <Switch>
-              <Route exact path="/" render={() => (
-                <div className="Home">
-                  <Home />
-                </div>
-              )} />
-              <Route exact path="/Login" render={() => (
+    return (
+      <div className="background">
+        <BrowserRouter>
+          <NavTabs logout={this.logout} loggedIn={this.state.loggedIn} />
+          <Switch>
+            <Route exact path="/" render={() => (
+              <div className="Home">
+                <Home />
+              </div>
+            )} />
+            <Route exact path="/Login" render={() => (
+              this.state.loggedIn ? <Redirect to="/" /> :
                 <Login
                   signIn={this.signIn}
                   loggedIn={this.state.loggedIn}
                 />)}
-              />
-              <Route exact path="/Signup" render={() => (
-                <Signup
-                  signIn={this.signIn}
-                  loggedIn={this.state.loggedIn}
-                />)}
-              />
-              <Route path="*">
-                <NoMatch />
-              </Route>
-            </Switch>
-          </Router>
-        </div>
-      );
-    }
-    else {
-      return (
-        <div className="background">
-          <Router history={history}>
-            <NavTabs logout={this.logout} loggedIn={this.state.loggedIn} />
-            <Switch>
-              <Route exact path="/" render={() => (
-                <div className="Home">
-                  <Home />
-                </div>
-              )} />
-              <Route exact path="/Cholesterol" render={() => (
-                <Cholesterol
-                  user={this.state.user}
-                />)}
-              />
-              <Route exact path="/RestingHeartRate" render={() => (
-                <RestingHeartRate
-                  user={this.state.user}
-                />)}
-              />
-              <Route path="*">
-                <NoMatch />
-              </Route>
-            </Switch>
-          </Router>
-        </div >);
-    }
+            />
+            <Route exact path="/Signup" render={() => (
+              this.state.loggedIn ? <Redirect to="/" /> :
+              <Signup
+                signIn={this.signIn}
+                loggedIn={this.state.loggedIn}
+              />)}
+            />
+            <Route exact path="/Cholesterol" render={() => (
+              !this.state.loggedIn ? <Redirect to="/" /> :
+              <Cholesterol
+                user={this.state.user}
+              />)}
+            />
+            <Route exact path="/RestingHeartRate" render={() => (
+              !this.state.loggedIn ? <Redirect to="/" /> :
+              <RestingHeartRate
+                user={this.state.user}
+              />)}
+            />
+            <Route path="*">
+              <NoMatch />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </div >);
   }
 }
