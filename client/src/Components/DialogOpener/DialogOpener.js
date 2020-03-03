@@ -31,7 +31,6 @@ var DialogOpener = /** @class */ (function (_super) {
             _this.setState({ open: true });
         };
         _this.handleClose = function () {
-            console.log("closing");
             _this.setState({ open: false });
         };
         return _this;

@@ -41,7 +41,6 @@ class Signup extends Component<SignUpProps, SignUpState> {
             "password": password,
             "externalType": "native"
         }
-        console.log(body);
         fetch("/api/user/signup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -52,7 +51,6 @@ class Signup extends Component<SignUpProps, SignUpState> {
             }
             return resp.json();
         }).then(userData => {
-            console.log(userData);
             this.props.signIn(userData);
         }).catch(error => {
             console.log("Error:" + error);

@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 
 // route /api/cholesterol/getAllUser
 router.get("/getAllUser", (req, res) => {
-    console.log(req.session.user);
     console.log("getAllUser");
     db.Cholesterol.count({ userID: mongoose.Types.ObjectId(`${req.session.user.id}`)}, (err, count) => {
         if(err){
@@ -42,7 +41,6 @@ router.post('/new', [
             console.log(err);
             return res.status(422).json(err);
         }
-        console.log(cholesterolEntry);
         return res.status(200).json({
             level: cholesterolEntry.level
         });

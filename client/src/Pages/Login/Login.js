@@ -37,7 +37,6 @@ var Login = /** @class */ (function (_super) {
                 return resp.json();
             })
                 .then(function (userData) {
-                console.log(userData);
                 _this.props.signIn(userData);
             })
                 .catch(function (error) {

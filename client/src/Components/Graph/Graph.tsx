@@ -38,9 +38,7 @@ interface GraphConfig {
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 
 function Graph(props: GraphProps) {
-
-  console.log(`Graph props data: ${props.data}`);
-
+  
   const config: GraphConfig = {
     type: 'line',// The chart type
     width: '100%', // Width of the chart

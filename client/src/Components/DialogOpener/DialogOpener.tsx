@@ -45,7 +45,6 @@ class DialogOpener extends Component<DialogOpenerProps, DialogOpenerState>{
     };
 
     handleClose = () => {
-        console.log("closing");
         this.setState({ open: false });
     };
 

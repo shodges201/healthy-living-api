@@ -37,7 +37,6 @@ export default class App extends Component<AppProps, AppState> {
   }
 
   signIn = (user: AppState["user"]) => {
-    console.log(user);
     console.log("logging in user");
     this.setState({ user: user, loggedIn: true });
   }

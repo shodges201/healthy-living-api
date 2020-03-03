@@ -18,7 +18,6 @@ var App = /** @class */ (function (_super) {
             user: {}
         };
         _this.signIn = function (user) {
-            console.log(user);
             console.log("logging in user");
             _this.setState({ user: user, loggedIn: true });
         };

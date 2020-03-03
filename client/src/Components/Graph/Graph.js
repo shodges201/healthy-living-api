@@ -7,7 +7,6 @@ import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import "./Graph.css";
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
 function Graph(props) {
-    console.log("Graph props data: " + props.data);
     var config = {
         type: 'line',
         width: '100%',

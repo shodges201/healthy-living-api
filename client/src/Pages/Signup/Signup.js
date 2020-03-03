@@ -30,7 +30,6 @@ var Signup = /** @class */ (function (_super) {
                 "password": password,
                 "externalType": "native"
             };
-            console.log(body);
             fetch("/api/user/signup", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -41,7 +40,6 @@ var Signup = /** @class */ (function (_super) {
                 }
                 return resp.json();
             }).then(function (userData) {
-                console.log(userData);
                 _this.props.signIn(userData);
             }).catch(function (error) {
                 console.log("Error:" + error);

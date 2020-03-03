@@ -14,7 +14,6 @@ var Cholesterol = /** @class */ (function (_super) {
         };
         _this.url = "/api/Cholesterol";
         _this.getAllData = function (cb) {
-            console.log(_this.url + "/getAllUser");
             fetch("/api/cholesterol/getAllUser", {
                 method: 'GET',
                 mode: "cors",
@@ -22,19 +21,13 @@ var Cholesterol = /** @class */ (function (_super) {
                     'Content-Type': 'application/json'
                 }
             }).then(function (data) { return data.json(); }).then(function (data) {
-                console.log('fetch resp');
-                console.log(data);
                 var formattedData = data.map(function (item) {
                     return { label: new Date(item.date).toLocaleDateString(), value: item.level };
                 });
-                console.log(formattedData);
                 cb(formattedData);
             });
         };
         _this.addNewData = function (date, amount, cb) {
-            console.log(date);
-            console.log(amount);
-            console.log(_this.url + "/new");
             fetch(_this.url + "/new", {
                 method: 'POST',
                 mode: "cors",
@@ -43,9 +36,7 @@ var Cholesterol = /** @class */ (function (_super) {
                 },
                 body: JSON.stringify({ date: date, amount: amount })
             }).then(function (data) { return data.json(); }).then(function (data) {
-                console.log("new entry: " + data);
                 _this.getAllData(function (entries) {
-                    console.log(entries);
                     if (!_this.state.dataAvailable) {
                         _this.setState({ data: entries, dataAvailable: true });
                     }
@@ -61,10 +52,7 @@ var Cholesterol = /** @class */ (function (_super) {
     Cholesterol.prototype.componentDidMount = function () {
         var _this = this;
         this.getAllData(function (data) {
-            console.log('constructor data: ');
-            console.log(data);
             if (data.length > 0) {
-                console.log("there is existing data");
                 return _this.setState({ data: data, dataAvailable: true });
             }
             return _this.setState({ data: data });

@@ -24,7 +24,6 @@ router.post('/new',[
         if(err){
             return res.status(422).json(err);
         }
-        console.log(LDLEntry);
         return res.status(200).json({
             rate: LDLEntry.rate
         });

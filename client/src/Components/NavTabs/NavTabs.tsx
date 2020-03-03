@@ -13,12 +13,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
 import "./NavTabs.css";
 
-const styles = {
-  whiteText:{
-    color: "white"
-  }
-}
-
 const theme = createMuiTheme({
   overrides: {
     // Style sheet name ⚛️
@@ -32,9 +26,7 @@ const theme = createMuiTheme({
 });
 
 export default function TemporaryDrawer(props: any) {
-  console.log(props.loggedIn);
   const menuItems = props.loggedIn ? ['Home', 'Cholesterol', 'Resting Heart Rate'] : ['Home', 'Log In', 'Signup'];
-  console.log(menuItems);
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -67,7 +59,6 @@ export default function TemporaryDrawer(props: any) {
 
     setState({ ...state, [side]: open });
   };
-  console.log(props.loggedIn);
   if (!props.loggedIn) {
     return (
       <MuiThemeProvider theme={theme}>
@@ -88,19 +79,19 @@ export default function TemporaryDrawer(props: any) {
               <Link to="/" style={{
                 textDecoration: "none"
               }} >
-                <Typography variant="h5" style={styles.whiteText} noWrap>
+                <Typography variant="h5" className="whiteText" noWrap>
                   Healthy Life Style
             </Typography>
               </Link>
               <div style={{marginLeft: "auto", display: "flex", flexDirection: "row"}}>
                 <Link to="/Login" className="signUpHeader"
  >
-                  <Typography variant="h5" style={styles.whiteText} noWrap>
+                  <Typography variant="h5" className="whiteText" noWrap>
                     Login
             </Typography>
                 </Link>
                 <Link to="/Signup" className="loginHeader">
-                  <Typography variant="h5" style={styles.whiteText} noWrap>
+                  <Typography variant="h5" className="whiteText" noWrap>
                     Signup
                 </Typography>
                 </Link>
@@ -131,13 +122,13 @@ export default function TemporaryDrawer(props: any) {
               <MenuIcon />
             </IconButton>
             <Link to="/" style={{ textDecoration: "none" }}>
-              <Typography variant="h5" style={styles.whiteText} noWrap>
+              <Typography variant="h5" className="whiteText" noWrap>
                 Healthy Life Style
           </Typography>
             </Link>
             <div style={{marginLeft: "auto" }}>
               <a onClick={props.logout} style={{ color: "white"}}>
-              <Typography variant="h5" style={styles.whiteText} noWrap>
+              <Typography variant="h5" className="whiteText" noWrap>
                     Logout
                 </Typography>
             </a>

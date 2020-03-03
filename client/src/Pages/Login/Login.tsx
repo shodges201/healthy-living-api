@@ -45,7 +45,6 @@ class Login extends React.Component<LoginProps, LoginState>{
       return resp.json();
     })
       .then((userData) => {
-        console.log(userData);
         this.props.signIn(userData);
       })
       .catch((error) => {

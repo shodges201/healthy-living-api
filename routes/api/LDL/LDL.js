@@ -22,7 +22,6 @@ router.get("/getAllUser", (req, res) => {
 router.post('/new',[
     body('rate').isInt({min: 10})
 ] ,(req, res) => {
-    console.log("here");
     db.HeartRate.create({
         userID: req.session.user.id,
         rate: req.body.rate
@@ -30,7 +29,6 @@ router.post('/new',[
         if(err){
             return res.status(422).json(err);
         }
-        console.log(heartRateEntry);
         return res.status(200).json({
             rate: heartRateEntry.rate
         });

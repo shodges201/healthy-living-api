@@ -103,7 +103,6 @@ class NewItemForm extends Component<NewItemFormProps, NewItemFormState> {
     handleLevel = (level: any) => {
         level = level.target.value;
         if (level[level.length - 1] !== '0' && !Number(level[level.length - 1])) {
-            console.log(level[level.length - 1]);
             level = level.substr(0, level.length - 1);
         }
         this.setState({ level: level });

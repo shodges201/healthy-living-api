@@ -38,10 +38,7 @@ class Cholesterol extends Component<CholesterolProps, CholesterolState> {
 
     componentDidMount() {
         this.getAllData((data: object[]) => {
-            console.log('constructor data: ');
-            console.log(data);
             if (data.length > 0) {
-                console.log("there is existing data")
                 return this.setState({ data: data, dataAvailable: true });
             }
             return this.setState({data: data});
@@ -50,7 +47,6 @@ class Cholesterol extends Component<CholesterolProps, CholesterolState> {
     }
 
     getAllData = (cb: Function) => {
-        console.log(`${this.url}/getAllUser`);
         fetch(`/api/cholesterol/getAllUser`, {
             method: 'GET',
             mode: "cors",
@@ -58,20 +54,14 @@ class Cholesterol extends Component<CholesterolProps, CholesterolState> {
                 'Content-Type': 'application/json'
             }
         }).then(data => data.json()).then((data: dbResult[]) => {
-            console.log('fetch resp');
-            console.log(data);
             const formattedData: dataFormat[] = data.map(item => {
                 return { label: new Date(item.date).toLocaleDateString(), value: item.level }
             })
-            console.log(formattedData);
             cb(formattedData);
         })
     }
 
     addNewData = (date: Date, amount: Number, cb: Function) => {
-        console.log(date);
-        console.log(amount);
-        console.log(`${this.url}/new`);
         fetch(`${this.url}/new`, {
             method: 'POST',
             mode: "cors",
@@ -80,9 +70,7 @@ class Cholesterol extends Component<CholesterolProps, CholesterolState> {
             },
             body: JSON.stringify({ date: date, amount: amount })
         }).then(data => data.json()).then((data) => {
-            console.log(`new entry: ${data}`);
             this.getAllData((entries: any) => {
-                console.log(entries);
                 if(!this.state.dataAvailable){
                     this.setState({ data: entries, dataAvailable: true });
                 }

@@ -37,7 +37,6 @@ router.post("/signup", [
         };
         const session = req.session;
         session.user = dbInfo;
-        console.log(dbInfo);
         return res.status(200).json(userInfo);
     })
 })
@@ -46,7 +45,6 @@ router.post("/signup", [
 //inputs: req.body.email, req.body.password
 router.post("/login", (req, res) => {
     console.log("/login");
-    console.log(req.body);
     const errors = validationResult(req);
     console.log(errors);
     if (!errors.isEmpty()) {
@@ -59,10 +57,6 @@ router.post("/login", (req, res) => {
             return res.status(422).json(err);
         }
         const user = data;
-        console.log(`data: ${data}`);
-        console.log(`err: ${err}`);
-        console.log(`user: ${user}`);
-        console.log(`user pw salt: ${user.passwordSalt}`);
         const correctPassword = validPassword(req.body.password, user.passwordSalt, 10000, user.passwordHash);
         if(correctPassword){
             const userInfo = {
@@ -76,7 +70,6 @@ router.post("/login", (req, res) => {
             };
             const session = req.session;
             session.user = dbInfo;
-            console.log(dbInfo);
             return res.status(200).json(userInfo);
         }
         return res.status(422).send("incorrect password");
@@ -84,12 +77,10 @@ router.post("/login", (req, res) => {
 })
 
 router.get('/logout',(req,res) => {
-    console.log(req.session);
     req.session.destroy((err) => {
         if(err) {
             return console.log(err);
         }
-        console.log(req.session);
         res.end();
     });
 });
