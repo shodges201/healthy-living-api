@@ -4,7 +4,7 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 
 function TextInput(props: {
   id: string, label: string, value: string, type: string, class: string, variant: ("standard" | "outlined" | "filled"), textColor: string,
-  backgroundColor: string, borderColor: string, focusedBorderColor: string, handleChange: Function, style?: any
+  backgroundColor: string, borderColor: string, focusedBorderColor: string, handleChange: Function, style?: any, className?: string
 }) {
 
   const theme = createMuiTheme({
@@ -48,6 +48,7 @@ function TextInput(props: {
           variant={"standard"}
           style={props.style}
           onChange={(event) => props.handleChange(event)}
+          className={props.className}
         />)
       case "filled":
         return (<TextField
@@ -58,6 +59,7 @@ function TextInput(props: {
           variant={"filled"}
           style={props.style}
           onChange={(event) => props.handleChange(event)}
+          className={props.className}
         />)
       case "outlined":
         return (<TextField
@@ -68,6 +70,7 @@ function TextInput(props: {
           variant={"outlined"}
           onChange={(event) => props.handleChange(event)}
           style={props.style}
+          className={props.className}
         />)
       default:
         return (<TextField
@@ -78,6 +81,7 @@ function TextInput(props: {
           variant={"standard"}
           style={props.style}
           onChange={(event) => props.handleChange(event)}
+          className={props.className}
         />)
     }
   }

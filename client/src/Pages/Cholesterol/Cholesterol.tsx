@@ -34,6 +34,7 @@ class Cholesterol extends Component<CholesterolProps, CholesterolState> {
                     suffix="mg/dl"
                     url="/api/cholesterol"
                     user={this.props.user}
+                    inputLabel="Cholesterol"
                 />
             </>
         );

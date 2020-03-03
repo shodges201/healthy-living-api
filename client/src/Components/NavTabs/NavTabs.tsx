@@ -11,7 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
-//import Button from '@material-ui/core/Button';
+import "./NavTabs.css";
 
 const styles = {
   whiteText:{
@@ -93,15 +93,12 @@ export default function TemporaryDrawer(props: any) {
             </Typography>
               </Link>
               <div style={{marginLeft: "auto", display: "flex", flexDirection: "row"}}>
-                <Link to="/Login" style={{
-                  textDecoration: "none", flexDirection: "row",
-                  display: "flex"
-                }} >
+                <Link to="/Login" className="signUpHeader" >
                   <Typography variant="h5" style={styles.whiteText} noWrap>
                     Login
             </Typography>
                 </Link>
-                <Link to="/Signup" style={{ marginLeft: "30px", textDecoration: "none", display: "flex", flexDirection: "row" }}>
+                <Link to="/Signup" className="loginHeader">
                   <Typography variant="h5" style={styles.whiteText} noWrap>
                     Signup
                 </Typography>

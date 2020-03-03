@@ -12,7 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
-//import Button from '@material-ui/core/Button';
+import "./NavTabs.css";
 var styles = {
     whiteText: {
         color: "white"
@@ -64,12 +64,9 @@ export default function TemporaryDrawer(props) {
                             } },
                             React.createElement(Typography, { variant: "h5", style: styles.whiteText, noWrap: true }, "Healthy Life Style")),
                         React.createElement("div", { style: { marginLeft: "auto", display: "flex", flexDirection: "row" } },
-                            React.createElement(Link, { to: "/Login", style: {
-                                    textDecoration: "none", flexDirection: "row",
-                                    display: "flex"
-                                } },
+                            React.createElement(Link, { to: "/Login", className: "signUpHeader" },
                                 React.createElement(Typography, { variant: "h5", style: styles.whiteText, noWrap: true }, "Login")),
-                            React.createElement(Link, { to: "/Signup", style: { marginLeft: "30px", textDecoration: "none", display: "flex", flexDirection: "row" } },
+                            React.createElement(Link, { to: "/Signup", className: "loginHeader" },
                                 React.createElement(Typography, { variant: "h5", style: styles.whiteText, noWrap: true }, "Signup"))))),
                 React.createElement(Drawer, { open: state.left, onClose: toggleDrawer('left', false) }, sideList('left')))));
     }

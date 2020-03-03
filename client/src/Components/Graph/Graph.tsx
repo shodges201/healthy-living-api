@@ -19,6 +19,7 @@ interface GraphProps {
     email?: string;
     id?: string;
   }
+  inputLabel: string;
 }
 
 interface GraphState {
@@ -136,7 +137,7 @@ class Graph extends Component<GraphProps, GraphState>{
         />
         <DialogOpener 
         graphType={"line"} 
-        label={"label"} 
+        label={this.props.inputLabel} 
         caption={this.props.caption} 
         submitNewEntry={this.addNewData}/>
         {//<NewItemForm graphType={"line"} label={this.props.graphType} caption={this.props.caption} addNewData={this.addNewData} />

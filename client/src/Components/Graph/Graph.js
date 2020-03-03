@@ -87,7 +87,7 @@ var Graph = /** @class */ (function (_super) {
     Graph.prototype.render = function () {
         return (React.createElement(Container, { className: "wrapper", maxWidth: "xl" },
             React.createElement(ReactFC, __assign({}, this.state)),
-            React.createElement(DialogOpener, { graphType: "line", label: "label", caption: this.props.caption, submitNewEntry: this.addNewData })));
+            React.createElement(DialogOpener, { graphType: "line", label: this.props.inputLabel, caption: this.props.caption, submitNewEntry: this.addNewData })));
     };
     return Graph;
 }(Component));

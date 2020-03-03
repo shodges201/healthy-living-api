@@ -33,7 +33,9 @@ class RestingHeartRate extends Component<RestingHeartRateProps, RestingHeartRate
                 yAxisLabel="Resting Heart Rate" 
                 suffix="BPM" 
                 url="/api/heartrate" 
-                user={this.props.user}/>
+                user={this.props.user}
+                inputLabel="BPM"
+                />
             </>
         );
     }

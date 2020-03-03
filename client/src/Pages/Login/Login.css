@@ -1,34 +1,43 @@
-.container{
+.container {
+    width: 60%;
+    height: 100%;
+    margin: auto;
+  } 
+
+  .containerInner {
     display: flex;
-    flex-flow: column wrap;
+    flex-direction: column;
     justify-content: center;
-}
+    height: calc(100% - 64px);
+    margin-top: 64px;
+  }
 
-.form{
+  .formContainer {
+    vertical-align: center;
+  }
+
+  .formItemContainer {
+    margin-bottom: 20px;
     display: flex;
-    flex-flow: column wrap;
-    justify-content: space-evenly;
-    position: relative;
-    top: 50%;
-}
+    flex-direction: row;
+    justify-content: center;
+  }
 
-.button{
-    /* align-self: flex-end; */
-    /* align-self: flex-start;
-    display: block;
-    width: 100%; */
-}
+  .formButtonContainer {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 
-.formItem{
+  .formItem {
+    margin: auto;
+    display: flex;
+    width:
+     50%;
+  }
+.formButtonInner {
     width: 50%;
-    align-self: flex-start;
-    margin-left: 0px;
-}
-
-.example{
-    color: white;
-}
-
-.middle{
-    margin-top: 50%;
+    display: flex;
+    justify-content: flex-end;
 }

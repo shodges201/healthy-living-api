@@ -16,7 +16,7 @@ var RestingHeartRate = /** @class */ (function (_super) {
     };
     RestingHeartRate.prototype.render = function () {
         return (React.createElement(React.Fragment, null,
-            React.createElement(Graph, { graphType: "restingHeartRate", caption: "BPM", yAxisLabel: "Resting Heart Rate", suffix: "BPM", url: "/api/heartrate", user: this.props.user })));
+            React.createElement(Graph, { graphType: "restingHeartRate", caption: "BPM", yAxisLabel: "Resting Heart Rate", suffix: "BPM", url: "/api/heartrate", user: this.props.user, inputLabel: "BPM" })));
     };
     return RestingHeartRate;
 }(Component));

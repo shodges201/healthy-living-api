@@ -16,7 +16,7 @@ var Cholesterol = /** @class */ (function (_super) {
     };
     Cholesterol.prototype.render = function () {
         return (React.createElement(React.Fragment, null,
-            React.createElement(Graph, { graphType: "cholesterol", caption: "Cholesterol Level", yAxisLabel: "Total Cholesterol Level", suffix: "mg/dl", url: "/api/cholesterol", user: this.props.user })));
+            React.createElement(Graph, { graphType: "cholesterol", caption: "Cholesterol Level", yAxisLabel: "Total Cholesterol Level", suffix: "mg/dl", url: "/api/cholesterol", user: this.props.user, inputLabel: "Cholesterol" })));
     };
     return Cholesterol;
 }(Component));

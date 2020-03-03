@@ -1,0 +1,26 @@
+.whiteText {
+    color: white;
+}
+
+.loginHeader {
+    margin-left: 30px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.signUpHeader {
+    text-decoration: none;
+    flex-direction: row;
+    display: flex;
+}
+
+@media only screen and (max-width: 600px){
+    .loginHeader {
+        display: none;
+    }
+    
+    .signUpHeader {
+        display: none;
+    }
+}
