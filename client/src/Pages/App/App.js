@@ -10,7 +10,6 @@ import Home from '../Home/Home';
 import Signup from "../Signup/Signup";
 import history from "../../history.js";
 import NoMatch from '../NoMatch/NoMatch';
-var Background = "/images/darkBackground.jpg";
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
     function App() {
@@ -60,7 +59,7 @@ var App = /** @class */ (function (_super) {
     App.prototype.render = function () {
         var _this = this;
         if (!this.state.loggedIn) {
-            return (React.createElement("div", { className: "background", style: { backgroundImage: "url(" + Background + ")" } },
+            return (React.createElement("div", { className: "background" },
                 React.createElement(Router, { history: history },
                     React.createElement(NavTabs, { loggedIn: this.state.loggedIn }),
                     React.createElement(Switch, null,
@@ -72,7 +71,7 @@ var App = /** @class */ (function (_super) {
                             React.createElement(NoMatch, null))))));
         }
         else {
-            return (React.createElement("div", { className: "background", style: { backgroundImage: "url(" + Background + ")" } },
+            return (React.createElement("div", { className: "background" },
                 React.createElement(Router, { history: history },
                     React.createElement(NavTabs, { logout: this.logout, loggedIn: this.state.loggedIn }),
                     React.createElement(Switch, null,

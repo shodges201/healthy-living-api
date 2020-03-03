@@ -22,8 +22,6 @@ interface AppState {
   };
 }
 
-const Background = "/images/darkBackground.jpg"
-
 export default class App extends Component<AppProps, AppState> {
   state = {
     loggedIn: false,
@@ -74,7 +72,7 @@ export default class App extends Component<AppProps, AppState> {
   render() {
     if (!this.state.loggedIn) {
       return (
-        <div className="background" style={{ backgroundImage: `url(${Background})` }}>
+        <div className="background">
           <Router history={history}>
             <NavTabs loggedIn={this.state.loggedIn} />
             <Switch>
@@ -105,7 +103,7 @@ export default class App extends Component<AppProps, AppState> {
     }
     else {
       return (
-        <div className="background" style={{ backgroundImage: `url(${Background})` }}>
+        <div className="background">
           <Router history={history}>
             <NavTabs logout={this.logout} loggedIn={this.state.loggedIn} />
             <Switch>
