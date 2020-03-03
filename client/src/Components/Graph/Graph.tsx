@@ -3,8 +3,6 @@ import FusionCharts from "fusioncharts";
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-//import NewItemForm from '../../Components/NewItemForm/NewItemForm'
-import { Container } from '@material-ui/core';
 import "./Graph.css";
 import DialogOpener from "../DialogOpener/DialogOpener"
 
@@ -131,7 +129,7 @@ class Graph extends Component<GraphProps, GraphState>{
 
   render() {
     return (
-      <Container className="wrapper" maxWidth="xl">
+      <div className="graphContainer">
         <ReactFC
           {...this.state}
         />
@@ -142,7 +140,7 @@ class Graph extends Component<GraphProps, GraphState>{
         submitNewEntry={this.addNewData}/>
         {//<NewItemForm graphType={"line"} label={this.props.graphType} caption={this.props.caption} addNewData={this.addNewData} />
         }
-      </Container>);
+      </div>);
   }
 }
 

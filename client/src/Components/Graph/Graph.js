@@ -4,8 +4,6 @@ import FusionCharts from "fusioncharts";
 import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-//import NewItemForm from '../../Components/NewItemForm/NewItemForm'
-import { Container } from '@material-ui/core';
 import "./Graph.css";
 import DialogOpener from "../DialogOpener/DialogOpener";
 ReactFC.fcRoot(FusionCharts, Charts, FusionTheme);
@@ -85,7 +83,7 @@ var Graph = /** @class */ (function (_super) {
         });
     };
     Graph.prototype.render = function () {
-        return (React.createElement(Container, { className: "wrapper", maxWidth: "xl" },
+        return (React.createElement("div", { className: "graphContainer" },
             React.createElement(ReactFC, __assign({}, this.state)),
             React.createElement(DialogOpener, { graphType: "line", label: this.props.inputLabel, caption: this.props.caption, submitNewEntry: this.addNewData })));
     };
