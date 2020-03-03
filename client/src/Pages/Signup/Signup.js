@@ -3,6 +3,46 @@ import React, { Component } from 'react';
 import './../Login/Login.css';
 import TextInput from "../../Components/TextInput/TextInput";
 import CompleteButton from "../../Components/CompleteButton/CompleteButton";
+var styles = {
+    container: {
+        width: "60%",
+        height: "100%",
+        margin: "auto"
+    },
+    containerInner: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        height: "calc(100% - 64px)",
+        marginTop: "64px",
+    },
+    form: {},
+    formContainer: {
+        verticalAlign: "center",
+    },
+    formItemContainer: {
+        marginBottom: "20px",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center"
+    },
+    formButtonContainer: {
+        marginBottom: "20px",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center"
+    },
+    formItem: {
+        margin: "auto",
+        display: "flex",
+        width: "50%"
+    },
+    formButtonInner: {
+        width: "50%",
+        display: "flex",
+        justifyContent: "flex-end"
+    },
+};
 var Signup = /** @class */ (function (_super) {
     __extends(Signup, _super);
     function Signup() {
@@ -52,13 +92,21 @@ var Signup = /** @class */ (function (_super) {
     }
     Signup.prototype.render = function () {
         var _this = this;
-        return (React.createElement("div", { className: "container" },
-            React.createElement("form", { className: "form", onSubmit: function (event) { return _this.formSubmit(event); } },
-                React.createElement(TextInput, { label: "email", type: "email", value: this.state.email, handleChange: function (event) { return _this.handleChange(event, "email"); } }),
-                React.createElement(TextInput, { label: "username", value: this.state.username, handleChange: function (event) { return _this.handleChange(event, "username"); } }),
-                React.createElement(TextInput, { label: "password", type: "password", value: this.state.password, handleChange: function (event) { return _this.handleChange(event, "password"); } }),
-                React.createElement(TextInput, { label: "password", type: "password", value: this.state.validate, handleChange: function (event) { return _this.handleChange(event, "validate"); } }),
-                React.createElement(CompleteButton, { text: "Sign Up", handleForm: this.formSubmit }))));
+        return (React.createElement("div", { style: styles.container },
+            React.createElement("div", { style: styles.containerInner },
+                React.createElement("form", { style: styles.form, onSubmit: function (event) { return _this.formSubmit(event); } },
+                    React.createElement("div", { style: styles.formContainer },
+                        React.createElement("div", { style: styles.formItemContainer },
+                            React.createElement(TextInput, { style: styles.formItem, label: "email", type: "email", value: this.state.email, handleChange: function (event) { return _this.handleChange(event, "email"); } })),
+                        React.createElement("div", { style: styles.formItemContainer },
+                            React.createElement(TextInput, { style: styles.formItem, label: "username", value: this.state.username, handleChange: function (event) { return _this.handleChange(event, "username"); } })),
+                        React.createElement("div", { style: styles.formItemContainer },
+                            React.createElement(TextInput, { style: styles.formItem, label: "password", type: "password", value: this.state.password, handleChange: function (event) { return _this.handleChange(event, "password"); } })),
+                        React.createElement("div", { style: styles.formItemContainer },
+                            React.createElement(TextInput, { style: styles.formItem, label: "password", type: "password", value: this.state.validate, handleChange: function (event) { return _this.handleChange(event, "validate"); } })),
+                        React.createElement("div", { style: styles.formButtonContainer },
+                            React.createElement("div", { style: styles.formButtonInner },
+                                React.createElement(CompleteButton, { text: "Sign Up", handleForm: this.formSubmit, size: "medium", class: "button" }))))))));
     };
     return Signup;
 }(Component));

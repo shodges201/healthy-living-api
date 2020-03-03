@@ -3,17 +3,60 @@ import './../Login/Login.css';
 import TextInput from "../../Components/TextInput/TextInput";
 import CompleteButton from "../../Components/CompleteButton/CompleteButton";
 
-interface SignUpProps{
+interface SignUpProps {
     signIn: Function;
     loggedIn: boolean;
 }
 
-interface SignUpState{
+interface SignUpState {
     email: string;
     username: string;
     password: string;
     validate: string;
     validPasswords: boolean;
+}
+
+const styles = {
+    container: {
+        width: "60%",
+        height: "100%",
+        margin: "auto"
+    },
+    containerInner: {
+        display: "flex",
+        flexDirection: "column" as "column",
+        justifyContent: "center",
+        height: "calc(100% - 64px)",
+        marginTop: "64px",
+    },
+    form: {
+    },
+    formContainer: {
+        verticalAlign: "center",
+
+    },
+    formItemContainer: {
+        marginBottom: "20px",
+        display: "flex",
+        flexDirection: "row" as "row",
+        justifyContent: "center"
+    },
+    formButtonContainer: {
+        marginBottom: "20px",
+        display: "flex",
+        flexDirection: "row" as "row",
+        justifyContent: "center"
+    },
+    formItem: {
+        margin: "auto",
+        display: "flex",
+        width: "50%"
+    },
+    formButtonInner: {
+        width: "50%",
+        display: "flex",
+        justifyContent: "flex-end"
+    },
 }
 
 class Signup extends Component<SignUpProps, SignUpState> {
@@ -62,14 +105,30 @@ class Signup extends Component<SignUpProps, SignUpState> {
 
     render() {
         return (
-            <div className="container">
-                <form className="form" onSubmit={(event) => this.formSubmit(event)}>
-                    <TextInput label="email" type="email" value={this.state.email} handleChange={(event: React.ChangeEvent<HTMLInputElement>)=> this.handleChange(event, "email" as any)} />
-                    <TextInput label="username" value={this.state.username} handleChange={(event: React.ChangeEvent<HTMLInputElement>)=> this.handleChange(event, "username" as any)} />
-                    <TextInput label="password" type="password" value={this.state.password} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, "password" as any)} />
-                    <TextInput label="password" type="password" value={this.state.validate} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, "validate" as any)} />
-                    <CompleteButton text="Sign Up" handleForm={this.formSubmit} />
-                </form>
+            <div style={styles.container}>
+                <div style={styles.containerInner}>
+                    <form style={styles.form} onSubmit={(event) => this.formSubmit(event)}>
+                        <div style={styles.formContainer}>
+                            <div style={styles.formItemContainer}>
+                                <TextInput style={styles.formItem} label="email" type="email" value={this.state.email} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, "email" as any)} />
+                            </div>
+                            <div style={styles.formItemContainer}>
+                                <TextInput style={styles.formItem} label="username" value={this.state.username} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, "username" as any)} />
+                            </div>
+                            <div style={styles.formItemContainer}>
+                                <TextInput style={styles.formItem} label="password" type="password" value={this.state.password} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, "password" as any)} />
+                            </div>
+                            <div style={styles.formItemContainer}>
+                                <TextInput style={styles.formItem} label="password" type="password" value={this.state.validate} handleChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleChange(event, "validate" as any)} />
+                            </div>
+                            <div style={styles.formButtonContainer}>
+                                <div style={styles.formButtonInner}>
+                                    <CompleteButton text="Sign Up" handleForm={this.formSubmit} size="medium" class="button" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         );
     }
