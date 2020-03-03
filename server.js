@@ -5,6 +5,7 @@ const path = require("path");
 var mongoose = require("mongoose");
 const session = require('express-session');
 const cors = require("cors");
+const MongoStore = require("connect-mongo")(session);
 
 
 const URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/healthyLiving';
@@ -21,7 +22,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(session({ secret: 'randomrandom', saveUninitialized: true, resave: true }));
+app.use(session({ secret: 'randomrandom', saveUninitialized: true, resave: true, store: new MongoStore({ mongooseConnection: connection }) }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
