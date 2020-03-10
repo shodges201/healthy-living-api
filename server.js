@@ -5,13 +5,16 @@ const path = require("path");
 var mongoose = require("mongoose");
 const session = require('express-session');
 const cors = require("cors");
+const MongoStore = require("connect-mongo")(session);
+require('dotenv').config()
 
 
 const URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/healthyLiving';
 const PORT = process.env.PORT || 9000;
+const SECRET = process.env.SECRET;
 
 const app = express();
-mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true, });
+mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 
 app.use((req, res, next) => {
@@ -21,21 +24,26 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(session({secret: 'randomrandom',saveUninitialized: true,resave: true}));
+app.use(session({ secret: SECRET, saveUninitialized: true, resave: true, store: new MongoStore({ mongooseConnection: connection }) }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("../client/build"));
+  app.use(express.static("client/build"));
 }
 
 // Add routes, both API and view
 app.use(routes);
 
-connection.once('open', () => {
-  app.listen(PORT, () => {
-    console.log('Node server running on port ' + PORT);
-  });
+app.on('ready', function() { 
+  app.listen(PORT, function(){ 
+      console.log(`server is running on port ${PORT}`); 
+  }); 
+}); 
+
+connection.once('open', function() { 
+  // All OK - fire (emit) a ready event. 
+  app.emit('ready'); 
 });

@@ -37,7 +37,6 @@ router.post("/signup", [
         };
         const session = req.session;
         session.user = dbInfo;
-        console.log(dbInfo);
         return res.status(200).json(userInfo);
     })
 })
@@ -46,19 +45,18 @@ router.post("/signup", [
 //inputs: req.body.email, req.body.password
 router.post("/login", (req, res) => {
     console.log("/login");
-    console.log(req.body);
     const errors = validationResult(req);
     console.log(errors);
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
     }
-    db.User.find({
+    db.User.findOne({
         email: req.body.email
     }, (err, data) => {
         if(err){
             return res.status(422).json(err);
         }
-        const user = data[0];
+        const user = data;
         const correctPassword = validPassword(req.body.password, user.passwordSalt, 10000, user.passwordHash);
         if(correctPassword){
             const userInfo = {
@@ -72,7 +70,6 @@ router.post("/login", (req, res) => {
             };
             const session = req.session;
             session.user = dbInfo;
-            console.log(dbInfo);
             return res.status(200).json(userInfo);
         }
         return res.status(422).send("incorrect password");
@@ -80,12 +77,10 @@ router.post("/login", (req, res) => {
 })
 
 router.get('/logout',(req,res) => {
-    console.log(req.session);
     req.session.destroy((err) => {
         if(err) {
             return console.log(err);
         }
-        console.log(req.session);
         res.end();
     });
 });
@@ -101,6 +96,12 @@ router.get('/sessionExpired', (req, res) => {
     return res.status(200).send({loggedIn: false});
 })
 
+// If no API routes are hit, send the React app
+router.use(function(req, res) {
+    console.log('/api');
+    res.sendFile(path.join(__dirname, "../../../client/build/index.html"));
+  });
+  
 function hashPassword(password) {
     var salt = crypto.randomBytes(128).toString('base64');
     var iterations = 10000;

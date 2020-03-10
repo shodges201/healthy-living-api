@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
 import NavTabs from '../../Components/NavTabs/NavTabs'
-import { Router, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Cholesterol from '../Cholesterol/Cholesterol.js';
 import RestingHeartRate from '../RestingHeartRate/RestingHeartRate.js';
 import Login from "../Login/Login.js";
 import Home from '../Home/Home';
 import Signup from "../Signup/Signup";
-import history from "../../history.js";
+import NoMatch from '../NoMatch/NoMatch';
 
 interface AppProps {
 }
 
 interface AppState {
-  loggedIn?: boolean;
+  loggedIn: boolean;
   user: {
     username?: string;
     email?: string;
@@ -21,9 +21,8 @@ interface AppState {
   };
 }
 
-const Background = "/images/darkBackground.jpg"
-
 export default class App extends Component<AppProps, AppState> {
+
   state = {
     loggedIn: false,
     user: {}
@@ -38,23 +37,26 @@ export default class App extends Component<AppProps, AppState> {
   }
 
   signIn = (user: AppState["user"]) => {
-    console.log(user);
     console.log("logging in user");
     this.setState({ user: user, loggedIn: true });
-    history.push("/");
   }
 
   checkUserStatus = () => {
     fetch(`/api/user/sessionExpired`)
       .then((resp) => {
         if (!resp.ok) {
-          throw new Error('checking if user is still logged in failed');
+          console.log("user error");
+          return;
         }
         return resp.json();
       })
       .then(data => {
-        if(data.loggedIn){
-          this.setState({user: data, loggedIn: true})
+        if(!data){
+          console.log("user not signed in");
+          return;
+        }
+        if (data.loggedIn) {
+          this.setState({ user: data, loggedIn: true })
         }
       })
   }
@@ -70,59 +72,47 @@ export default class App extends Component<AppProps, AppState> {
   }
 
   render() {
-    if (!this.state.loggedIn) {
-      return (
-        <div className="background" style={{ backgroundImage: `url(${Background})` }}>
-          <Router history={history}>
-            <NavTabs loggedIn={this.state.loggedIn} />
+    return (
+      <div className="background">
+        <BrowserRouter>
+          <NavTabs logout={this.logout} loggedIn={this.state.loggedIn} />
+          <Switch>
             <Route exact path="/" render={() => (
-              <div className="Home">
-                <Home />
-              </div>
-            )} />
-            <Route exact path="/Home" render={() => (
               <div className="Home">
                 <Home />
               </div>
             )} />
             <Route exact path="/Login" render={() => (
-              <Login
+              this.state.loggedIn ? <Redirect to="/" /> :
+                <Login
+                  signIn={this.signIn}
+                  loggedIn={this.state.loggedIn}
+                />)}
+            />
+            <Route exact path="/Signup" render={() => (
+              this.state.loggedIn ? <Redirect to="/" /> :
+              <Signup
                 signIn={this.signIn}
                 loggedIn={this.state.loggedIn}
               />)}
             />
-            <Route exact path="/Signup" component={Signup} />
-          </Router>
-        </div>
-      );
-    }
-    else {
-      return (
-        <div className="background" style={{ backgroundImage: `url(${Background})` }}>
-          <Router history={history}>
-            <NavTabs logout={this.logout} loggedIn={this.state.loggedIn} />
-            <Route exact path="/" render={() => (
-              <div className="Home">
-                <Home />
-              </div>
-            )} />
-            <Route exact path="/Home" render={() => (
-              <div className="Home">
-                <Home />
-              </div>
-            )} />
             <Route exact path="/Cholesterol" render={() => (
+              !this.state.loggedIn ? <Redirect to="/Login" /> :
               <Cholesterol
                 user={this.state.user}
               />)}
             />
             <Route exact path="/RestingHeartRate" render={() => (
+              !this.state.loggedIn ? <Redirect to="/Login" /> :
               <RestingHeartRate
                 user={this.state.user}
               />)}
             />
-          </Router>
-        </div >);
-    }
+            <Route path="*">
+              <NoMatch />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </div >);
   }
 }

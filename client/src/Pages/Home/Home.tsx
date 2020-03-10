@@ -12,22 +12,22 @@ class Home extends Component {
         return (
             <div className="container">
                 <div className="welcome">
-                    <h1>
-                        Welcome to Healthy Living
+                    <h1 className="welcomeHeader">
+                        Healthy Living
                     </h1>
-                    <h5>
+                    <h5 className="welcomeDescription">
                         An Application to track health markers like cholesterol 
                         and resting heart rate over time for a healthier lifestyle.
                     </h5>
                 </div>
                 <div className="explanation">
-                    <div>
+                    <div className="explanationInner">
                         Sign in
                     </div>
-                    <div>
+                    <div className="explanationInner">
                         View existing data
                     </div>
-                    <div>
+                    <div className="explanationInner">
                         Or add new data
                     </div>
                 </div>

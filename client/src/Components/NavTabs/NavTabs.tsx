@@ -11,13 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
-//import Button from '@material-ui/core/Button';
-
-const styles = {
-  whiteText:{
-    color: "white"
-  }
-}
+import "./NavTabs.css";
 
 const theme = createMuiTheme({
   overrides: {
@@ -32,9 +26,7 @@ const theme = createMuiTheme({
 });
 
 export default function TemporaryDrawer(props: any) {
-  console.log(props.loggedIn);
   const menuItems = props.loggedIn ? ['Home', 'Cholesterol', 'Resting Heart Rate'] : ['Home', 'Log In', 'Signup'];
-  console.log(menuItems);
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -50,7 +42,7 @@ export default function TemporaryDrawer(props: any) {
     >
       <List style={{ paddingTop: '0px' }}>
         {menuItems.map((text, index) => (
-          <Link to={text.split(' ').join('')} key={text}>
+          <Link to={text === 'Home' ? "/" : text.split(' ').join('')} key={text}>
             <ListItem button>
               <ListItemText primary={text} />
             </ListItem>
@@ -67,7 +59,6 @@ export default function TemporaryDrawer(props: any) {
 
     setState({ ...state, [side]: open });
   };
-  console.log(props.loggedIn);
   if (!props.loggedIn) {
     return (
       <MuiThemeProvider theme={theme}>
@@ -88,21 +79,19 @@ export default function TemporaryDrawer(props: any) {
               <Link to="/" style={{
                 textDecoration: "none"
               }} >
-                <Typography variant="h5" style={styles.whiteText} noWrap>
+                <Typography variant="h5" className="whiteText" noWrap>
                   Healthy Life Style
             </Typography>
               </Link>
               <div style={{marginLeft: "auto", display: "flex", flexDirection: "row"}}>
-                <Link to="/Login" style={{
-                  textDecoration: "none", flexDirection: "row",
-                  display: "flex"
-                }} >
-                  <Typography variant="h5" style={styles.whiteText} noWrap>
+                <Link to="/Login" className="signUpHeader"
+ >
+                  <Typography variant="h5" className="whiteText" noWrap>
                     Login
             </Typography>
                 </Link>
-                <Link to="/Signup" style={{ marginLeft: "30px", textDecoration: "none", display: "flex", flexDirection: "row" }}>
-                  <Typography variant="h5" style={styles.whiteText} noWrap>
+                <Link to="/Signup" className="loginHeader">
+                  <Typography variant="h5" className="whiteText" noWrap>
                     Signup
                 </Typography>
                 </Link>
@@ -133,13 +122,13 @@ export default function TemporaryDrawer(props: any) {
               <MenuIcon />
             </IconButton>
             <Link to="/" style={{ textDecoration: "none" }}>
-              <Typography variant="h5" style={styles.whiteText} noWrap>
+              <Typography variant="h5" className="whiteText" noWrap>
                 Healthy Life Style
           </Typography>
             </Link>
             <div style={{marginLeft: "auto" }}>
               <a onClick={props.logout} style={{ color: "white"}}>
-              <Typography variant="h5" style={styles.whiteText} noWrap>
+              <Typography variant="h5" className="whiteText" noWrap>
                     Logout
                 </Typography>
             </a>

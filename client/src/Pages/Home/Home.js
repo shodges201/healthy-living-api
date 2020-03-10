@@ -13,12 +13,12 @@ var Home = /** @class */ (function (_super) {
     Home.prototype.render = function () {
         return (React.createElement("div", { className: "container" },
             React.createElement("div", { className: "welcome" },
-                React.createElement("h1", null, "Welcome to Healthy Living"),
-                React.createElement("h5", null, "An Application to track health markers like cholesterol and resting heart rate over time for a healthier lifestyle.")),
+                React.createElement("h1", { className: "welcomeHeader" }, "Healthy Living"),
+                React.createElement("h5", { className: "welcomeDescription" }, "An Application to track health markers like cholesterol and resting heart rate over time for a healthier lifestyle.")),
             React.createElement("div", { className: "explanation" },
-                React.createElement("div", null, "Sign in"),
-                React.createElement("div", null, "View existing data"),
-                React.createElement("div", null, "Or add new data"))));
+                React.createElement("div", { className: "explanationInner" }, "Sign in"),
+                React.createElement("div", { className: "explanationInner" }, "View existing data"),
+                React.createElement("div", { className: "explanationInner" }, "Or add new data"))));
     };
     return Home;
 }(Component));

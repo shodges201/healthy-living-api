@@ -3,6 +3,7 @@ import * as React from 'react';
 import './Login.css';
 import TextInput from "../../Components/TextInput/TextInput";
 import CompleteButton from "../../Components/CompleteButton/CompleteButton";
+import "./Login.css";
 var Login = /** @class */ (function (_super) {
     __extends(Login, _super);
     function Login() {
@@ -36,7 +37,6 @@ var Login = /** @class */ (function (_super) {
                 return resp.json();
             })
                 .then(function (userData) {
-                console.log(userData);
                 _this.props.signIn(userData);
             })
                 .catch(function (error) {
@@ -48,10 +48,16 @@ var Login = /** @class */ (function (_super) {
     Login.prototype.render = function () {
         var _this = this;
         return (React.createElement("div", { className: "container" },
-            React.createElement("form", { className: "form", onSubmit: function (event) { return _this.formSubmit(event); } },
-                React.createElement(TextInput, { variant: "outlined", label: "email", type: "email", value: this.state.email, handleChange: this.handleChange }),
-                React.createElement(TextInput, { variant: "outlined", label: "password", type: "password", value: this.state.password, handleChange: this.handleChange }),
-                React.createElement(CompleteButton, { text: "Login", handleForm: this.formSubmit, size: "medium", class: "button" }))));
+            React.createElement("div", { className: "containerInner" },
+                React.createElement("form", { onSubmit: function (event) { return _this.formSubmit(event); } },
+                    React.createElement("div", { className: "formContainer" },
+                        React.createElement("div", { className: "formItemContainer" },
+                            React.createElement(TextInput, { className: "formItem", variant: "outlined", label: "email", type: "email", value: this.state.email, handleChange: function (event) { return _this.handleChange(event); } })),
+                        React.createElement("div", { className: "formItemContainer" },
+                            React.createElement(TextInput, { className: "formItem", variant: "outlined", label: "password", type: "password", value: this.state.password, handleChange: function (event) { return _this.handleChange(event); } })),
+                        React.createElement("div", { className: "formButtonContainer" },
+                            React.createElement("div", { className: "formButtonInner" },
+                                React.createElement(CompleteButton, { text: "Login", handleForm: this.formSubmit, size: "medium", class: "button" }))))))));
     };
     return Login;
 }(React.Component));
