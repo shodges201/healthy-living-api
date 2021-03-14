@@ -1,8 +1,8 @@
 # Healthy Living
 
-Deployed project can be found at: https://healthily-living.herokuapp.com/
+Deployed project can be found at: https://healthily-living.herokuapp.com/. The deployed application is no longer available as of November 2017 with the removal of the free tier of mLab's mongoDB plugin on Heroku.
 
-#### -- Project Status: Active
+#### -- Project Status: Not active
 
 ## Project Intro/Objective
 Healthy Living is a project intended to help users easily track their vital health indicators such as cholesterol, resting heart rate, etc.
