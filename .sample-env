@@ -1,0 +1,7 @@
+BASE_URL=http://localhost
+PORT=8080
+API_PREFIX=/api
+DB_SERVER=localhost
+DB_PORT=5432
+DB_NAME=healthy-living
+DB_PASSWORD=%db_password%
