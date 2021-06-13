@@ -1,5 +1,5 @@
 
-# Healthy Living
+# Healthy Living API
 
 #### -- Project Status: Active
 
