@@ -7,13 +7,13 @@ import { QueryResult } from 'pg';
 @injectable()
 export default class HeartRateModel {
 
-  constructor(@inject(DatabasePool) private dbPool: Pool<Client>) {
+  constructor(@inject(DatabasePool) private dbPool: DatabasePool) {
   }
 
   public async create(rate: number): Promise<QueryResult> {
     const queryString = `INSERT INTO heart_rate (rate, date) 
                              VALUES ($1, $2) RETURNING id`;
-    const client = await this.dbPool.connect();
+    const client = await this.dbPool.pool.connect();
     let result: QueryResult;
     try {
       result = await client.query(queryString, [rate, new Date().getDate()]);
@@ -29,7 +29,7 @@ export default class HeartRateModel {
 
   public async getAll(): Promise<QueryResult> {
     const queryString = `SELECT * FROM heart_rate`;
-    const client = await this.dbPool.connect();
+    const client = await this.dbPool.pool.connect();
     let result: QueryResult;
     try {
       result = await client.query(queryString);

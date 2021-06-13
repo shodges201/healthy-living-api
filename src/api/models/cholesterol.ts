@@ -7,13 +7,13 @@ import { QueryResult } from 'pg';
 @injectable()
 export default class CholesterolModel {
 
-  constructor(@inject(DatabasePool) private dbPool: Pool<Client>) {
+  constructor(@inject(DatabasePool) private dbPool: DatabasePool) {
   }
 
   public async createCholesterol(level: number, type: string) {
     const queryString = `INSERT INTO ${type} (level, date) 
                              VALUES ($1, $2) RETURNING id`;
-    const client = await this.dbPool.connect();
+    const client = await this.dbPool.pool.connect();
     let result: any = null;
     try {
       result = await client.query(queryString, [level, new Date().getDate()]);
@@ -29,7 +29,7 @@ export default class CholesterolModel {
 
   public async getAllCholesterol(type: string): Promise<QueryResult> {
     const queryString = `SELECT * FROM ${type}`;
-    const client = await this.dbPool.connect();
+    const client = await this.dbPool.pool.connect();
     let result: QueryResult;
     try {
       result = await client.query(queryString);

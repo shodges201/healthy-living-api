@@ -9,14 +9,14 @@ import { Logger } from 'winston';
 @injectable()
 export default class UserModel {
 
-  constructor(@inject(DatabasePool) private dbPool: Pool<Client>,
+  constructor(@inject(DatabasePool) private dbPool: DatabasePool,
               @inject('logger') private logger: Logger) {
   }
 
   public async create(user: User): Promise<QueryResult> {
     const queryString = `INSERT INTO user (username, okta_id, email, phone_number first_name, last_name, created_date) 
                          VALUES ($1, $2, $3, $4 ,$5) RETURNING id`;
-    const client = await this.dbPool.connect();
+    const client = await this.dbPool.pool.connect();
     try {
         const result: QueryResult = await client.query(queryString, [user.username, 
         user.email, user.firstName, user.lastName, user.createdDate]);
