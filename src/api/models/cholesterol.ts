@@ -6,10 +6,8 @@ import { QueryResult } from 'pg';
 
 @injectable()
 export default class CholesterolModel {
-  private dbPool: Pool<Client>;
 
-  constructor(@inject(DatabasePool) dbPool: DatabasePool) {
-    this.dbPool = dbPool.pool;
+  constructor(@inject(DatabasePool) private dbPool: Pool<Client>) {
   }
 
   public async createCholesterol(level: number, type: string) {

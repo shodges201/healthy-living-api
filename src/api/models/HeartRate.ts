@@ -6,10 +6,8 @@ import { QueryResult } from 'pg';
 
 @injectable()
 export default class HeartRateModel {
-  private dbPool: Pool<Client>;
 
-  constructor(@inject(DatabasePool) dbPool: DatabasePool) {
-    this.dbPool = dbPool.pool;
+  constructor(@inject(DatabasePool) private dbPool: Pool<Client>) {
   }
 
   public async create(rate: number): Promise<QueryResult> {

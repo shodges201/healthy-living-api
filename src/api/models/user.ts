@@ -8,13 +8,9 @@ import { Logger } from 'winston';
 
 @injectable()
 export default class UserModel {
-  private dbPool: Pool<Client>;
-  private logger: Logger;
 
-  constructor(@inject(DatabasePool) dbPool: DatabasePool,
-              @inject('logger') logger: Logger) {
-    this.dbPool = dbPool.pool;
-    this.logger = logger;
+  constructor(@inject(DatabasePool) private dbPool: Pool<Client>,
+              @inject('logger') private logger: Logger) {
   }
 
   public async create(user: User): Promise<QueryResult> {

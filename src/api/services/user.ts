@@ -10,19 +10,11 @@ import { Logger } from 'winston';
 
 @injectable()
 export default class UserService {
-    private oktaClient: Client;
-    private userModel: UserModel;
-    private config: ConfigService;
-    private logger: Logger;
 
-    constructor(@inject(Client) oktaClient: Client,
-                @inject(UserModel) userModel: UserModel,
-                @inject(ConfigService) config: ConfigService,
-                @inject('logger') logger: Logger){
-        this.oktaClient = oktaClient;
-        this.userModel = userModel;
-        this.config = config;
-        this.logger = logger;
+    constructor(@inject(Client) private oktaClient: Client,
+                @inject(UserModel) private userModel: UserModel,
+                @inject(ConfigService) private config: ConfigService,
+                @inject('logger') private logger: Logger){
     }
 
     public async create(req: any, res: Response) {
