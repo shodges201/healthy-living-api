@@ -34,7 +34,7 @@ export default class UserModel {
 
   public async getAll(): Promise<QueryResult> {
     const queryString = `SELECT * FROM user`;
-    const client = await this.dbPool.connect();
+    const client = await this.dbPool.pool.connect();
     let result: QueryResult;
     try {
       result = await client.query(queryString);
