@@ -1,10 +1,9 @@
 import OktaJwtVerifier, {Jwt} from '@okta/jwt-verifier';
 import { container } from 'tsyringe';
-import ConfigService from '../config/config';
-import { Response } from 'express';
-import ExtendedRequest from '../types/ExtendedRequest';
+import { Request, Response } from 'express';
+import RequestJwt from '../types/RequestJwt';
 
-export default async function authenticationRequired(req: ExtendedRequest, res: Response, next: Function) {
+export default async function authenticationRequired(req: RequestJwt, res: Response, next: Function) {
     const oktaJwtVerifier = container.resolve(OktaJwtVerifier); 
     
     const authHeader = req.headers.authorization || '';

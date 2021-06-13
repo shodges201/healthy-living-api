@@ -18,7 +18,7 @@ export default class UserModel {
   }
 
   public async create(user: User): Promise<QueryResult> {
-    const queryString = `INSERT INTO user (username, okta_id, email, phone_number firstName, lastName, created_date) 
+    const queryString = `INSERT INTO user (username, okta_id, email, phone_number first_name, last_name, created_date) 
                          VALUES ($1, $2, $3, $4 ,$5) RETURNING id`;
     const client = await this.dbPool.connect();
     try {

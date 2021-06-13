@@ -26,7 +26,6 @@ export default class UserService {
     }
 
     public async create(req: any, res: Response) {
-
         const newUser = {
             profile: {
               firstName: req.body.firstName,
@@ -90,7 +89,6 @@ export default class UserService {
         try{
             const authResponse = await this.oktaClient.http.http(authUrl, request);
             const respJson = await authResponse.json();
-            console.log(respJson);
             return respJson;
         }
         catch(error){

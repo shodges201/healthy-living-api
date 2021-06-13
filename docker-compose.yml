@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  web:
+    image: docker.io/shodges201/healthy-living:1.0.0
+    ports:
+      - "8080:8080"
+    env_file: .env.production
+    volumes: 
+        - ./logs:/usr/healthy-living/logs
+    
