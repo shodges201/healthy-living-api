@@ -5,3 +5,7 @@ DB_SERVER=localhost
 DB_PORT=5432
 DB_NAME=healthy-living
 DB_PASSWORD=%db_password%
+OKTA_DOMAIN=%okta_domain%
+OKTA_CLIENT_SECRET=%okta_client_secret%
+OKTA_TOKEN=%okta_token%
+OKTA_CLIENT_ID=%okta_client_id%
