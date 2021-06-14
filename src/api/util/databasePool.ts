@@ -1,14 +1,14 @@
 import Pool from 'pg-pool';
-import { singleton, inject } from "tsyringe";
+import { singleton, inject } from 'tsyringe';
+import { Client, PoolConfig } from 'pg';
 import ConfigService from '../config/config';
-import { Client } from 'pg';
-import { PoolConfig } from 'pg';
 
 @singleton()
 export default class DatabasePool {
-
   private readonly config: ConfigService;
+
   private readonly dbConfig: PoolConfig;
+
   public pool: Pool<Client>;
 
   constructor(@inject(ConfigService) config: ConfigService) {
@@ -19,7 +19,7 @@ export default class DatabasePool {
       host: config.db.hostname,
       port: config.db.port,
       database: config.db.name,
-      ssl: false
+      ssl: false,
     };
     this.pool = new Pool(this.dbConfig);
   }

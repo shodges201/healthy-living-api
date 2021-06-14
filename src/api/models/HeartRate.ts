@@ -1,12 +1,9 @@
-import Pool from 'pg-pool';
-import DatabasePool from '../util/databasePool';
-import { Client } from 'pg';
-import { inject, injectable } from "tsyringe";
 import { QueryResult } from 'pg';
+import { inject, injectable } from 'tsyringe';
+import DatabasePool from '../util/databasePool';
 
 @injectable()
 export default class HeartRateModel {
-
   constructor(@inject(DatabasePool) private dbPool: DatabasePool) {
   }
 
@@ -28,7 +25,7 @@ export default class HeartRateModel {
   }
 
   public async getAll(): Promise<QueryResult> {
-    const queryString = `SELECT * FROM heart_rate`;
+    const queryString = 'SELECT * FROM heart_rate';
     const client = await this.dbPool.pool.connect();
     let result: QueryResult;
     try {
