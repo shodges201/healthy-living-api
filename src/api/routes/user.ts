@@ -2,9 +2,11 @@ import { Router, Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { Logger } from 'winston';
 import UserService from '../services/user';
+import requireAuthentication from '../middleware/requireAuthentication';
+import injectUser from '../middleware/injectUser';
 
 const router = Router();
-// TODO use tsyringe instead of typedi -> seems much more intuitive and well described
+
 export default (appRouter: Router) => {
   appRouter.use('/user', router);
   const userService = container.resolve(UserService);
@@ -12,17 +14,26 @@ export default (appRouter: Router) => {
 
   router.get('/', async (req: Request, res: Response) => res.status(200));
 
-  router.get('/all', async (req: Request, res: Response) => {
-    const result = await userService.getAll();
-    return res.json(result.rows);
-  });
+  router.get('/all', requireAuthentication,
+    injectUser,
+    async (req: any, res: Response) => {
+      const result = await userService.getAll();
+      return res.json(result.rows);
+    });
+
+  router.get('/:id', requireAuthentication,
+    injectUser,
+    async (req: any, res: Response) => {
+      const user = await userService.getFromOktaId(req.params.id);
+      return res.status(200).json(user);
+    });
 
   router.post('/register', async (req: Request, res: Response) => {
     try {
       const user = await userService.create(req, res);
     } catch (error) {
       logger.error(error.message);
-      res.sendStatus(500);
+      return res.sendStatus(500);
     }
     return res.sendStatus(200);
   });

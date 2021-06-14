@@ -27,6 +27,9 @@ export default class UserService {
       },
     };
 
+    this.logger.info(JSON.stringify(newUser));
+    this.logger.info(JSON.stringify(req.body));
+
     try {
       const oktaUser: User = await this.oktaClient.createUser(newUser, { activate: false });
       oktaUser.activate(({ sendEmail: true }));
@@ -38,6 +41,7 @@ export default class UserService {
         newUser.profile.lastName,
         new Date(created));
       this.userModel.create(appUser);
+      return appUser;
     } catch (error) {
       this.logger.error('Error creating a user');
       this.logger.error(error.message);
@@ -83,5 +87,10 @@ export default class UserService {
       this.logger.error(error.message);
       throw error;
     }
+  }
+
+  public async getFromOktaId(id: string): Promise<AppUser> {
+    const user = await this.userModel.getUserFromOktaId(id);
+    return user;
   }
 }

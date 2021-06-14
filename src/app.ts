@@ -11,7 +11,7 @@ import logInit from './api/services/logger';
 
 async function startServer() {
   const app = express();
-  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(express.json());
   app.use(cors());
   await okta();
   await logInit();

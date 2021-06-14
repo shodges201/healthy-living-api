@@ -1,4 +1,6 @@
 export class User {
+  public id?: number;
+
   public username: string;
 
   public oktaId: string;
@@ -13,9 +15,10 @@ export class User {
 
   public createdDate: Date;
 
-  constructor(username: string, oktaId: string, email: string, 
-              phoneNumber:number, firstName: string, lastName: string, 
-              createdDate: Date) {
+  constructor(username: string, oktaId: string, email: string,
+    phoneNumber:number, firstName: string, lastName: string,
+    createdDate: Date, id?:number) {
+    this.id = id;
     this.username = username;
     this.oktaId = oktaId;
     this.email = email;
