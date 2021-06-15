@@ -63,6 +63,7 @@ export default class UserModel {
     if (!result) {
       throw new Error('No result for getting user from okta_id');
     }
+    this.logger.info(JSON.stringify(result.rows[0]));
     const userInfo: any = result.rows[0];
     const user: User = new User(userInfo.username, userInfo.okta_id, userInfo.email,
       userInfo.phone_number, userInfo.first_name, userInfo.last_name,

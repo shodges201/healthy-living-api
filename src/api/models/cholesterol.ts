@@ -24,14 +24,12 @@ export default class CholesterolModel {
     return result.rows[0].id;
   }
 
-  public async getAllCholesterol(type: string): Promise<QueryResult> {
-    const queryString = `SELECT * FROM ${type}`;
+  public async getAllCholesterol(id: number, type: string): Promise<QueryResult> {
+    const queryString = `SELECT * FROM ${type} WHERE user_id = $1`;
     const client = await this.dbPool.pool.connect();
     let result: QueryResult;
     try {
-      result = await client.query(queryString);
-    } catch (error) {
-      throw error;
+      result = await client.query(queryString, [id]);
     } finally {
       client.release();
     }

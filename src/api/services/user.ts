@@ -4,7 +4,6 @@ import { Client, User } from '@okta/okta-sdk-nodejs';
 import { Response } from 'express';
 import { Logger } from 'winston';
 import UserModel from '../models/user';
-
 import ConfigService from '../config/config';
 import { User as AppUser } from '../types/User';
 
@@ -56,7 +55,6 @@ export default class UserService {
 
   public async login(username: string, password: string) {
     const authUrl = `${this.oktaClient.baseUrl}/oauth2/default/v1/token`;
-    console.log(authUrl);
     const authHeader = `${this.config.okta.clientId}:${this.config.okta.clientSecret}`;
     const base64AuthHeader = Buffer.from(authHeader).toString('base64');
 
@@ -80,8 +78,8 @@ export default class UserService {
     };
     try {
       const authResponse = await this.oktaClient.http.http(authUrl, request);
-      const respJson = await authResponse.json();
-      return respJson;
+      this.logger.info(await authResponse.json());
+      return await authResponse.json();
     } catch (error) {
       this.logger.error('Error logging in/getting token for user');
       this.logger.error(error.message);

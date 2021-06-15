@@ -8,12 +8,14 @@ export default async function injectUser(req: any, res: Response, next: Function
   try {
     const userModel = container.resolve(UserModel);
     const { claims: { uid } } = req.jwt;
+    logger.info(`uid: ${uid}`);
     const currentUser = await userModel.getUserFromOktaId(uid);
+    logger.info(JSON.stringify(currentUser));
     if (!currentUser) {
       return res.status(401);
     }
 
-    req.currentUser = currentUser;
+    req.user = currentUser;
     return next();
   } catch (error) {
     logger.error('There was an issue attaching current user by oktaId');
