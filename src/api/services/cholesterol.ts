@@ -16,8 +16,8 @@ export default class CholesterolService {
     const id = await this.cholesterolModel.createCholesterol(level, type);
   }
 
-  public async getAll(type: string): Promise<QueryResult> {
-    const result = await this.cholesterolModel.getAllCholesterol(type);
+  public async getAll(id: number, type: string): Promise<QueryResult> {
+    const result = await this.cholesterolModel.getAllCholesterol(id, type);
     this.logger.info(result);
     return result;
   }

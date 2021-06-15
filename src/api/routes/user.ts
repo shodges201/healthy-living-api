@@ -44,13 +44,12 @@ export default (appRouter: Router) => {
     if (!username || !password) {
       return res.sendStatus(401);
     }
-    console.log(username, password);
     try {
       const resultJson = await userService.login(username, password);
       return res.status(200).json(resultJson);
     } catch (error) {
       logger.error(error);
-      if (error.status === 401 || error.status == 400) {
+      if (error.status === 401 || error.status === 400) {
         return res.sendStatus(401);
       }
       return res.sendStatus(500);

@@ -12,8 +12,7 @@ export default async function injectUser(req: any, res: Response, next: Function
     if (!currentUser) {
       return res.status(401);
     }
-
-    req.currentUser = currentUser;
+    req.user = currentUser;
     return next();
   } catch (error) {
     logger.error('There was an issue attaching current user by oktaId');

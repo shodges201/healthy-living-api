@@ -1,9 +1,11 @@
 import OktaJwtVerifier, { Jwt } from '@okta/jwt-verifier';
 import { container } from 'tsyringe';
 import { Response } from 'express';
+import { Logger } from 'winston';
 
 export default async function authenticationRequired(req: any, res: Response, next: Function) {
   const oktaJwtVerifier = container.resolve(OktaJwtVerifier);
+  const logger:Logger = container.resolve('logger');
 
   const authHeader = req.headers.authorization || '';
   const match = authHeader.match(/Bearer (.+)/);

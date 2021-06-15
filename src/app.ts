@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import express from 'express';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import { Logger } from 'winston';
 import { container } from 'tsyringe';
 import routes from './api/index';
