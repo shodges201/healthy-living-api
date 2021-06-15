@@ -1,7 +1,7 @@
 {
-  "name": "healthy-living",
+  "name": "healthy-living-api",
   "version": "1.0.0",
-  "description": "Live Healthier",
+  "description": "A secured API to create and store health indicator data like heart rate levels and cholesterol levels",
   "main": "./src/app.ts",
   "scripts": {
     "start": "nodemon",
