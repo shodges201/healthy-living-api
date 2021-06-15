@@ -11,9 +11,15 @@ export default class CholesterolService {
     this.logger = logger;
   }
 
-  public async createEntry(level: number, type: string) {
+  public async create(id: number, level: number, type: string) {
     // TODO use DI to inject Service and possibly model?
-    const id = await this.cholesterolModel.createCholesterol(level, type);
+    return this.cholesterolModel.createCholesterol(id, level, type);
+  }
+
+  public async getById(id: number, userId: number, type: string): Promise<QueryResult> {
+    const result = await this.cholesterolModel.getCholesterolById(id, userId, type);
+    this.logger.info(JSON.stringify(result.rows));
+    return result;
   }
 
   public async getAll(id: number, type: string): Promise<QueryResult> {

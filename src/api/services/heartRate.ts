@@ -9,12 +9,23 @@ export default class HeartRateService {
     @inject('logger') private logger:Logger) {
   }
 
-  public async createEntry(rate: number, type: string) {
-    // TODO use DI to inject Service and possibly model?
-    const id = await this.cholesterolModel.create(rate);
+  /**
+   * Returns the id of the created resource in the database
+   * @param id current user's id
+   * @param rate new heart rate level
+   * @returns id:number
+   */
+  public async create(id:number, rate: number): Promise<number> {
+    return this.cholesterolModel.create(id, rate);
+  }
+
+  public async getById(id: number, userId: number): Promise<QueryResult> {
+    const result = await this.cholesterolModel.getHeartRateById(id, userId);
+    this.logger.info(JSON.stringify(result.rows));
+    return result;
   }
 
   public async getAll(id: number): Promise<QueryResult> {
-    return await this.cholesterolModel.getAll(id);
+    return this.cholesterolModel.getAll(id);
   }
 }

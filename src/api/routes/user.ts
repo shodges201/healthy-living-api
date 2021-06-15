@@ -21,7 +21,7 @@ export default (appRouter: Router) => {
       return res.json(result.rows);
     });
 
-  router.get('/:id', requireAuthentication,
+  router.get('id/:id', requireAuthentication,
     injectUser,
     async (req: any, res: Response) => {
       const user = await userService.getFromOktaId(req.params.id);
