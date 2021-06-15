@@ -17,6 +17,15 @@ export default (appRouter: Router) => {
     return res.json(result.rows);
   });
 
+  router.get('/id/:id', requireAuthentication, injectUser, async (req: any, res: Response) => {
+    const result = await heartRateService.getById(req.params.id, req.user.id);
+    if (result.rowCount === 0) {
+      logger.warn(`No results returned for heart rate get by id with id = ${req.params.id}`);
+      return res.sendStatus(404);
+    }
+    return res.json(result.rows[0]);
+  });
+
   router.post('', requireAuthentication, injectUser, async (req: any, res: Response) => {
     if (!req.body.rate) {
       return res.sendStatus(400);
@@ -25,7 +34,7 @@ export default (appRouter: Router) => {
       return res.sendStatus(401);
     }
     const entryId: number = await heartRateService.create(req.user.id, req.body.rate);
-    res.location(`${req.protocol}://${req.get('host')}${req.originalUrl}${entryId}`);
+    res.location(`${req.protocol}://${req.get('host')}${req.originalUrl}/id/${entryId}`);
     return res.sendStatus(201);
   });
 };

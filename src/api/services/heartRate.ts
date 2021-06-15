@@ -19,6 +19,12 @@ export default class HeartRateService {
     return this.cholesterolModel.create(id, rate);
   }
 
+  public async getById(id: number, userId: number): Promise<QueryResult> {
+    const result = await this.cholesterolModel.getHeartRateById(id, userId);
+    this.logger.info(JSON.stringify(result.rows));
+    return result;
+  }
+
   public async getAll(id: number): Promise<QueryResult> {
     return this.cholesterolModel.getAll(id);
   }

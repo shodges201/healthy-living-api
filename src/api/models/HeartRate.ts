@@ -35,4 +35,16 @@ export default class HeartRateModel {
     }
     return result;
   }
+
+  public async getHeartRateById(id: number, userId: number): Promise<QueryResult> {
+    const queryString = 'SELECT * FROM heart_rate WHERE user_id = $1 AND id = $2';
+    const client = await this.dbPool.pool.connect();
+    let result: QueryResult;
+    try {
+      result = await client.query(queryString, [userId, id]);
+    } finally {
+      client.release();
+    }
+    return result;
+  }
 }
