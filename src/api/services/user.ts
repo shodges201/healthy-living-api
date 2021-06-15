@@ -26,9 +26,6 @@ export default class UserService {
       },
     };
 
-    this.logger.info(JSON.stringify(newUser));
-    this.logger.info(JSON.stringify(req.body));
-
     try {
       const oktaUser: User = await this.oktaClient.createUser(newUser, { activate: false });
       oktaUser.activate(({ sendEmail: true }));
@@ -78,7 +75,6 @@ export default class UserService {
     };
     try {
       const authResponse = await this.oktaClient.http.http(authUrl, request);
-      this.logger.info(await authResponse.json());
       return await authResponse.json();
     } catch (error) {
       this.logger.error('Error logging in/getting token for user');
@@ -88,7 +84,6 @@ export default class UserService {
   }
 
   public async getFromOktaId(id: string): Promise<AppUser> {
-    const user = await this.userModel.getUserFromOktaId(id);
-    return user;
+    return this.userModel.getUserFromOktaId(id);
   }
 }

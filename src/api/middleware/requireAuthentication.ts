@@ -14,7 +14,6 @@ export default async function authenticationRequired(req: any, res: Response, ne
   // an array  of strings (the actual aud claim in the token must match
   // one of the strings).
   const expectedAudience = 'api://default';
-  logger.info(`bearer: ${match}`);
 
   if (!match) {
     res.status(401);
