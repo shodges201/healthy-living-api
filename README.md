@@ -13,7 +13,7 @@ Healthy Living is a project intended to help users easily track their vital heal
 * Postgres
 
 ## Project Description
-This is the backend for a project inteded to be used to track health indicators. It is a REST API that uses a node/express server runtime environment implemented with Typescript along with a Postgres database for storing the information sent by users. 
+This is the backend for a project intended to be used to track health indicators. It is a REST API that uses a node/express server runtime environment implemented with Typescript along with a Postgres database for storing the information sent by users. 
 
 
 ## Getting Started
